@@ -1,32 +1,27 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+  router-view
 </template>
 
+<script>
+import AppBar from './components/AppBar'
+import HomeTop from './components/HomeTop'
+import HelloWorld from './components/HelloWorld'
+export default {
+  name: 'App',
+
+  components: {
+    AppBar,
+    HomeTop,
+    HelloWorld
+  },
+
+  data: () => ({
+  })
+}
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .main-content-wrapper{
+    padding:0;
+    background: linear-gradient(180deg,#240044 0,#0f0240 25%,#400959 40%,#0f0240 65%,#0f0240);
+  }
 </style>
