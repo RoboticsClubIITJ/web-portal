@@ -20,6 +20,7 @@ export default {
   },
 
   data: () => ({
+    drawer: true
   })
 }
 </script>

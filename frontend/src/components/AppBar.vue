@@ -1,43 +1,41 @@
-<template>
-  <v-app-bar
-    app
-    class="transparent"
-    dark
-  >
-    <div class="d-flex align-center">
-      <v-img
-        alt="Vuetify Logo"
-        class="shrink mr-2"
-        contain
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-        transition="scale-transition"
-        width="40"
-      />
-
-      <v-img
-        alt="Vuetify Name"
-        class="shrink mt-1 hidden-sm-and-down"
-        contain
-        min-width="100"
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-        width="100"
-      />
-    </div>
-
-    <v-spacer></v-spacer>
-
-    <v-btn
-      href="https://github.com/vuetifyjs/vuetify/releases/latest"
-      target="_blank"
-      text
-    >
-      <span class="mr-2">Latest Release</span>
-      <v-icon>mdi-open-in-new</v-icon>
-    </v-btn>
-  </v-app-bar>
+<template lang="pug">
+  div
+    v-app-bar(
+      app
+      dark
+      :color="BarColor"
+      v-scroll="BarScroll"
+    )
+      div(class="d-flex")
+        v-img(
+          transition="fade-transition"
+          :src="Logo"
+        )
+      v-spacer
+      v-btn(@click="drawer = !drawer" text v-if="$vuetify.breakpoint.mobile")
+          v-icon(large v-if="!drawer") mdi-menu
+          v-icon(large v-if="drawer")  mdi-close
+    v-navigation-drawer(color="blue darken-4"
+      v-model="drawer"
+      left
+      app
+    )
+      div ekfnefdnedwek
 </template>
 <script>
+import Logo from '../assets/robologo.svg'
 export default {
-  name: 'AppBar'
+  name: 'AppBar',
+  data: () => ({
+    BarColor: 'transparent',
+    drawer: false,
+    Logo
+  }),
+  methods: {
+    BarScroll (e) {
+      var scroll = e.target.scrollingElement.scrollTop
+      this.BarColor = scroll > 100 ? 'indigo darken-1' : 'transparent'
+    }
+  }
 }
 </script>

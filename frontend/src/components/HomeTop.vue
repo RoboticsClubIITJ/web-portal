@@ -5,9 +5,9 @@
             :style= "{ '--hero-image': `url(${HeroImg})` }"
             v-if="!$vuetify.breakpoint.mobile"
           )
-        div(class="back-img"
+        div(class="wrapper-background"
           :style= "{ '--hero-image': `url(${HeroImgMobile})` }"
-          v-else
+          v-if="$vuetify.breakpoint.mobile"
         )
         v-main(class="h-100")
           v-row(class="h-100")
@@ -63,6 +63,9 @@ export default {
   .h-100{
     height: 100%;
     overflow: visible;
+  }
+  #banners{
+    overflow: hidden;
   }
   .wrapper {
     overflow: visible;
