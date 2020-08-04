@@ -26,10 +26,6 @@ Procedure:
     ```
     pipenv shell
     ```
-- Change to source code directory
-    ```
-    cd src
-    ```
 - Make database migrations
     ```
     python manage.py makemigrations
