@@ -15,9 +15,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 from django.contrib.auth.views import LogoutView
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('auth/', include('social_django.urls', namespace='social')),
     path('admin/', admin.site.urls),
     path('api/', include("api.urls")),
+    path('accounts/', include("allauth.urls")),
+    path('',TemplateView.as_view(template_name = "signin/index.html"))
+
 ]
