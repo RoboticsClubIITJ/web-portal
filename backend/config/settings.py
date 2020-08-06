@@ -60,7 +60,6 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -151,21 +150,6 @@ if not DEBUG:
     REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = (
         'rest_framework.renderers.JSONRenderer',
     )
-
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/login'
-LOGIN_ERROR_URL = '/login'
-
-# Social Auth settings
-SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/login'
-
-SOCIAL_AUTH_CLEAN_USERNAMES = True
-
-SOCIAL_AUTH_POSTGRES_JSONFIELD = True
-
-SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-
-SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['username', 'email']
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY', default='', cast=str)
 
