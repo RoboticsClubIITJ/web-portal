@@ -172,6 +172,6 @@ SOCIAL_AUTH_PIPELINE = (
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080/",
-    "http://192.168.0.106:8080/"
+    "http://localhost:8080",
+    "http://192.168.0.106:8080"
 ]
