@@ -27,14 +27,22 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = config('SECRET_KEY', default= 'dcyz)+52d)n1f3d6dsf&g0p6a($(v4&rvu=9u3u6fib9=kzy$8', cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.split(',')])
 
 # Application definition
 
 INSTALLED_APPS = [
+<<<<<<< Updated upstream
     'projects.apps.ProjectsConfig',
+=======
+<<<<<<< HEAD
+    'user.apps.UserConfig',
+=======
+    'projects.apps.ProjectsConfig',
+>>>>>>> 49ae0f51603c23bdf49134d55d856cbc53274bac
+>>>>>>> Stashed changes
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,7 +97,19 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+<<<<<<< Updated upstream
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+=======
+<<<<<<< HEAD
+        'NAME': os.path.join(BASE_DIR,'db.sqlite3'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST', default='localhost'),
+        'PORT': config('DB_PORT', cast=int, default=5432),
+=======
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+>>>>>>> 49ae0f51603c23bdf49134d55d856cbc53274bac
+>>>>>>> Stashed changes
     }
 }
 
