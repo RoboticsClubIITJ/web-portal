@@ -131,7 +131,7 @@ STATICFILES_DIRS = [
 STATIC_URL = '/django_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='assets/staticfiles', cast=str))
 
-MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='media', cast=str))
+MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='assets/media', cast=str))
 MEDIA_URL = '/django_media/'
 
 REST_FRAMEWORK = {
