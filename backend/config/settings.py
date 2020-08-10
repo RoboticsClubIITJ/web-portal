@@ -60,7 +60,6 @@ MIDDLEWARE = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
@@ -87,12 +86,20 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if os.getenv('MODE', 'DEVELOPMENT') == 'DEVELOPMENT':
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': config('DB_NAME'),
+            'USER': config('DB_USER'),
+            'PASSWORD': config('DB_PASSWORD'),
+            'HOST': config('DB_HOST', default='localhost'),
+            'PORT': config('DB_PORT', cast=int, default=5432),
+        }
     }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -134,7 +141,7 @@ STATICFILES_DIRS = [
 STATIC_URL = '/django_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='assets/staticfiles', cast=str))
 
-MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='media', cast=str))
+MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='assets/media', cast=str))
 MEDIA_URL = '/django_media/'
 
 REST_FRAMEWORK = {
@@ -152,42 +159,13 @@ if not DEBUG:
         'rest_framework.renderers.JSONRenderer',
     )
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = '/login'
-LOGIN_ERROR_URL = '/login'
-
-# Social Auth settings
-SOCIAL_AUTH_GOOGLE_OAUTH2_LOGIN_ERROR_URL = '/login'
-
-SOCIAL_AUTH_CLEAN_USERNAMES = True
-
-SOCIAL_AUTH_POSTGRES_JSONFIELD = True
-
-SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-
-SOCIAL_AUTH_PROTECTED_USER_FIELDS = ['username', 'email']
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY', default='', cast=str)
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', cast=str)
 
-SOCIAL_AUTH_PIPELINE = (
-    'social_core.pipeline.social_auth.social_details',
-    'social_core.pipeline.social_auth.social_uid',
-    'social_core.pipeline.social_auth.auth_allowed',
-    'social_core.pipeline.social_auth.associate_by_email',
-    'social_core.pipeline.social_auth.social_user',
-    'social_core.pipeline.user.get_username',
-    'social_core.pipeline.user.create_user',
-    'social_core.pipeline.social_auth.associate_user',
-    'social_core.pipeline.social_auth.load_extra_data',
-    'social_core.pipeline.user.user_details',
-    'social_core.pipeline.social_auth.associate_by_email',
-)
-
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080/",
-    "http://192.168.0.106:8080/"
+    "http://localhost:8080",
+    "http://192.168.0.106:8080"
 ]

@@ -26,7 +26,6 @@ WORKDIR /app
 COPY . /app
 RUN ls
 RUN python manage.py collectstatic --no-default-ignore
-CMD gunicorn -b :8000 config.wsgi
 
 # production stage
 #FROM nginx:stable-alpine as production-stage
