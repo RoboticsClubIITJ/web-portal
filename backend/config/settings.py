@@ -42,13 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-<<<<<<< HEAD
-    'social_django',
-    'corsheaders'
-    #'accounts.apps.AccountsConfig',
-    #'core.apps.CoreConfig',
-=======
->>>>>>> c83b6a3c771e5942e4d5739dab29649d7fd1adf8
 ]
 
 MIDDLEWARE = [
