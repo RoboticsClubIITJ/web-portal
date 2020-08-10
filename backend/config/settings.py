@@ -42,10 +42,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+<<<<<<< HEAD
     'social_django',
     'corsheaders'
     #'accounts.apps.AccountsConfig',
     #'core.apps.CoreConfig',
+=======
+>>>>>>> c83b6a3c771e5942e4d5739dab29649d7fd1adf8
 ]
 
 MIDDLEWARE = [
@@ -164,8 +167,3 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY', default='', cast=str
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', cast=str)
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
-
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080",
-    "http://192.168.0.106:8080"
-]
