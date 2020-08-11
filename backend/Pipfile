@@ -12,6 +12,8 @@ requests = "*"
 psycopg2 = "==2.8.4"
 django-decouple = "==2.1"
 djangorestframework = "==3.10.2"
+pillow = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.6"
