@@ -153,7 +153,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'api.authentication.SessionAuthentication',
+        'auth.authentication.SessionAuthentication',
     )
 }
 
@@ -168,6 +168,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', ca
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
+LOGIN_URL = 'http://'+config('HOST_ADDRESS',default='localhost:8080')+'/api/auth/login'
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://192.168.0.106:8080"
