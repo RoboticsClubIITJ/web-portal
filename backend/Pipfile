@@ -8,6 +8,7 @@ flake8 = "*"
 
 [packages]
 django = "==2.2.9"
+requests = "*"
 psycopg2 = "==2.8.4"
 django-decouple = "==2.1"
 djangorestframework = "==3.10.2"

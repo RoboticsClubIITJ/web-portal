@@ -1,8 +1,8 @@
 from django.urls import path, include
 
-from api.views import AuthenticationCheckAPIView, LoginAPIView, LogoutAPIView, CsrfTokenAPIView
+from .views import AuthenticationCheckAPIView, LoginAPIView, LogoutAPIView, CsrfTokenAPIView
 
-app_name = 'api'
+app_name = 'auth'
 
 urlpatterns = [
     path('csrf-token/', CsrfTokenAPIView.as_view(), name='token'),
