@@ -166,11 +166,8 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', ca
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
-<<<<<<< HEAD
 LOGIN_URL = 'http://'+config('HOST_ADDRESS',default='localhost:8080')+'/api/auth/login'
-=======
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://192.168.0.106:8080"
 ]
->>>>>>> 94cf88c8c4e3e837ab9eeb8422d3ab419db66600
