@@ -15,12 +15,20 @@
       v-btn(@click="drawer = !drawer" text v-if="$vuetify.breakpoint.mobile")
           v-icon(large v-if="!drawer") mdi-menu
           v-icon(large v-if="drawer")  mdi-close
-    v-navigation-drawer(color="blue darken-4"
+      div
+        v-btn.pa-3.ma-5(text v-if="!$vuetify.breakpoint.mobile" v-for="item in items" :key="item.text" @click="" :to="item.router" exact) {{item.text}}
+    v-navigation-drawer(v-if="$vuetify.breakpoint.mobile"
+      color="blue darken-4"
       v-model="drawer"
       left
       app
     )
-      div ekfnefdnedwek
+      v-list(rounded)
+        v-list-item( v-for="item in items" :key="item.text" @click="" :to="item.router" exact)
+          v-list-item-action
+            v-icon.white--text {{item.icon}}
+          v-list-item-content
+            v-list-item-title.white--text {{item.text}}
 </template>
 <script>
 import Logo from '../assets/robologo.svg'
@@ -29,7 +37,15 @@ export default {
   data: () => ({
     BarColor: 'transparent',
     drawer: false,
-    Logo
+    Logo,
+    items: [
+      { text: 'Home', icon: 'mdi-home', router: '/' },
+      { text: 'About', icon: 'mdi-information', router: '/about' },
+      { text: 'Projects', icon: 'mdi-briefcase-edit-outline' },
+      { text: 'Inventory', icon: 'mdi-shopping' },
+      { text: 'Team', icon: 'mdi-human-male-male' },
+      { text: 'Profile', icon: 'mdi-account' }
+    ]
   }),
   methods: {
     BarScroll (e) {
