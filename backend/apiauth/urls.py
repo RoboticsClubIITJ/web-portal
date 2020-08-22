@@ -2,7 +2,7 @@ from django.urls import path, include
 
 from .views import AuthenticationCheckAPIView, LoginAPIView, LogoutAPIView, CsrfTokenAPIView
 
-app_name = 'auth'
+app_name = 'apiauth'
 
 urlpatterns = [
     path('csrf-token/', CsrfTokenAPIView.as_view(), name='token'),
