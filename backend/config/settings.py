@@ -36,7 +36,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.spl
 INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'team.apps.TeamConfig',
-    'user.apps.UserConfig',
+    'apiauth.apps.ApiauthConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,7 +152,7 @@ REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions. 
     # 'rest_framework.permissions.IsAuthenticated',
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'auth.authentication.SessionAuthentication',
+        'apiauth.authentication.SessionAuthentication',
     )
 }
 
@@ -168,6 +168,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', ca
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 LOGIN_URL = 'http://'+config('HOST_ADDRESS',default='localhost:8080')+'/api/auth/login'
+
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://192.168.0.106:8080"

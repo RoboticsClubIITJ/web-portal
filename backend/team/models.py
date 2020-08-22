@@ -1,5 +1,5 @@
 from django.db import models
-from user.models import UserProfile
+from apiauth.models import UserProfile
 
 
 class TechStack(models.Model):
@@ -30,4 +30,4 @@ class Member(models.Model):
     linkedin = models.URLField(max_length=200, null=True, blank=True)
 
     def __str__(self):
-        return self.member.name
+        return self.member.user.get_full_name()

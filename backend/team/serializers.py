@@ -1,11 +1,18 @@
 from rest_framework import serializers
+from django.contrib.auth.models import User
 from .models import Member
-from user.models import UserProfile
+from apiauth.models import UserProfile
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'email']
 
 class ProfileSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model = UserProfile
-        fields = ['name', 'roll_number', 'year', 'email', 'phone', 'avatar']
+        fields = ['user', 'roll_number', 'year', 'phone', 'avatar']
 
 class TeamSerializer(serializers.ModelSerializer):
     techstack = serializers.StringRelatedField(many=True)

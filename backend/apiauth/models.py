@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class UserProfile(models.Model):
     PROG_CHOICES = (
@@ -32,8 +33,7 @@ class UserProfile(models.Model):
         ('CI', 'Civil Engineering'),
         ('AI', 'AI and Data Science')
     )
-    name = models.CharField(max_length=100)
-    email = models.EmailField(max_length=250)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='M')
     roll_number = models.CharField(max_length=15, unique=True)
     phone = models.CharField(max_length=10, null=True)
@@ -43,4 +43,4 @@ class UserProfile(models.Model):
     branch = models.CharField(max_length=5, choices=BRANCH_CHOICES)
     
     def __str__(self):
-        return self.name
+        return self.user.get_full_name()
