@@ -1,4 +1,5 @@
 from django.db import models
+from user.models import UserProfile
 
 
 class TechStack(models.Model):
@@ -22,14 +23,11 @@ class Member(models.Model):
     )
 
     #Model
-    name = models.CharField(max_length=60)
+    member = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
     position = models.CharField(max_length=20, choices=POSITION)
     techstack = models.ManyToManyField(TechStack)
-    phone = models.CharField(max_length=10)
-    email = models.EmailField(max_length=254)
     github = models.URLField(max_length=200)
     linkedin = models.URLField(max_length=200, null=True, blank=True)
-    member_image = models.ImageField(default='default_member.png', upload_to='member_pics')
 
     def __str__(self):
-        return self.name
+        return self.member.name

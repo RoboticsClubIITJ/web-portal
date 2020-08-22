@@ -10,5 +10,5 @@ from .models import Member
 class MembersList(ListCreateAPIView):
     queryset = Member.objects.all()
     serializer_class = TeamSerializer
-    search_fields = ['name','techstack__tech_name']
+    search_fields = ['member__name','techstack__tech_name']
     filter_backends = (SearchFilter,)
