@@ -43,7 +43,7 @@ export default {
       { text: 'About', icon: 'mdi-information', router: '/about' },
       { text: 'Projects', icon: 'mdi-briefcase-edit-outline' },
       { text: 'Inventory', icon: 'mdi-shopping' },
-      { text: 'Team', icon: 'mdi-human-male-male' },
+      { text: 'Team', icon: 'mdi-human-male-male', router: '/team' },
       { text: 'Profile', icon: 'mdi-account' }
     ]
   }),
