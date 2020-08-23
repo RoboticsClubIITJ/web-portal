@@ -35,6 +35,7 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.spl
 
 INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
+    'team.apps.TeamConfig',
     'apiauth.apps.ApiauthConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'django_filters'
 ]
 
 MIDDLEWARE = [
@@ -147,10 +149,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='assets/media',
 MEDIA_URL = '/django_media/'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions.
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
+    # Use Django's standard `django.contrib.auth` permissions. 
+    # 'rest_framework.permissions.IsAuthenticated',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'apiauth.authentication.SessionAuthentication',
     )
@@ -168,6 +168,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', ca
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
 LOGIN_URL = 'http://'+config('HOST_ADDRESS',default='localhost:8080')+'/api/auth/login'
+
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",
     "http://192.168.0.106:8080"
