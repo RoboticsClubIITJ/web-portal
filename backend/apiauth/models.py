@@ -39,7 +39,7 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=10, null=True)
     prog = models.CharField(max_length=5, choices=PROG_CHOICES, verbose_name='Programme', default='BT')
     year = models.CharField(max_length=1, choices=YEAR_CHOICES, default='1')
-    avatar = models.ImageField(upload_to='avatar', default='default_member.png', height_field=None, width_field=None)
+    #avatar = models.ImageField(upload_to='avatar', default='default_member.png', height_field=None, width_field=None)
     branch = models.CharField(max_length=5, choices=BRANCH_CHOICES)
     
     def __str__(self):

@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/team/',include("team.urls")),
     path('api/auth/', include("apiauth.urls")),
     path('api/projects/', include("projects.urls")),
+    path('api/user/', include("apiauth.urls")),
 ]
 
 if settings.DEBUG:

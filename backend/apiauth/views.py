@@ -12,7 +12,11 @@ from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
 from rest_framework import status
-
+from apiauth.serializers import UserProfileSerializer, UserSerializer
+from apiauth.models import UserProfile
+from rest_framework.views import APIView
+from rest_framework import status
+from django.http import Http404
 import requests
 
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
@@ -93,3 +97,58 @@ class CsrfTokenAPIView(APIView):
     def get(self, request, *args, **kwargs):
         token = csrf.get_token(request)
         return Response({"csrftoken": token}, status=status.HTTP_200_OK)
+
+class UserRecordView(APIView):
+    def get(self, format=None):
+        """
+        Get all the user records
+        :param format: Format of the user records to return to
+        :return: Returns a list of user records
+        """
+        students = UserProfile.objects.all()
+        serializer = UserProfileSerializer(students, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        """
+        Create a user record
+        :param format: Format of the user records to return to
+        :param request: Request object for creating user
+        :return: Returns a user record
+        """
+        serializer = UserProfileSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.create(validated_data=request.data)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.error_messages,
+                        status=status.HTTP_400_BAD_REQUEST)
+class UserDetail(APIView):
+    """
+    Retrieve, update or delete a user instance.
+    """
+    def get_object(self, pk):
+        try:
+            return UserProfile.objects.get(pk=pk)
+        except UserProfile.DoesNotExist:
+            raise Http404("User does not exist")
+
+    def get(self, request, pk, format=None):
+        userprofile = self.get_object(pk=pk)
+        serializer = UserProfileSerializer(userprofile)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        userprofile = self.get_object(pk=pk)
+        serializer = UserProfileSerializer(userprofile, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        userprofile = self.get_object(pk=pk)
+        userprofile.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+ 
