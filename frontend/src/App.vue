@@ -1,18 +1,20 @@
 <template lang="pug">
-  router-view
+  v-app
+    div.main-content-wrapper
+      AppBar
+      router-view
+      Footer
 </template>
 
 <script>
-import AppBar from './components/AppBar'
-import HomeTop from './components/HomeTop'
-import HelloWorld from './components/HelloWorld'
+import AppBar from '@/components/AppBar'
+import Footer from '@/components/Footer'
 export default {
   name: 'App',
 
   components: {
     AppBar,
-    HomeTop,
-    HelloWorld
+    Footer
   },
 
   data: () => ({

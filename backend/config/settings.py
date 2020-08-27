@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'team.apps.TeamConfig',
     'apiauth.apps.ApiauthConfig',
+    'general_assets.apps.GeneralAssetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -149,7 +150,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='assets/media',
 MEDIA_URL = '/django_media/'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions. 
+    # Use Django's standard `django.contrib.auth` permissions.
     # 'rest_framework.permissions.IsAuthenticated',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'apiauth.authentication.SessionAuthentication',

@@ -1,22 +1,24 @@
 <template lang="pug">
-  v-app
-    AppBar
-    div(class="main-content-wrapper")
-      HomeTop
-      HelloWorld
+  div.main-wrapper
+    div.banners
+      Banner1
+      Banner2
+      Banner3
+    Team
 </template>
-
 <script>
-import AppBar from '@/components/AppBar'
-import HomeTop from '@/components/HomeTop'
-import HelloWorld from '@/components/HelloWorld'
+import Banner1 from '@/components/home/Banner1'
+import Banner2 from '@/components/home/Banner2'
+import Banner3 from '@/components/home/Banner3'
+import Team from '@/components/home/Team'
 export default {
   name: 'Home',
 
   components: {
-    AppBar,
-    HomeTop,
-    HelloWorld
+    Banner1,
+    Banner2,
+    Banner3,
+    Team
   },
 
   data: () => ({
@@ -25,8 +27,10 @@ export default {
 }
 </script>
 <style>
-  .main-content-wrapper{
+  .main-wrapper{
     padding:0;
-    background: linear-gradient(180deg,#240044 0,#0f0240 25%,#400959 40%,#0f0240 65%,#0f0240);
+  }
+  .banners{
+    overflow: hidden;
   }
 </style>
