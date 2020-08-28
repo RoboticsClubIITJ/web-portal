@@ -1,9 +1,9 @@
 <template lang="pug">
   v-app
     div.main-content-wrapper
-      AppBar
+      AppBar(v-if="!$route.meta.NoAP")
       router-view
-      Footer
+      Footer(v-if="!$route.meta.NoAP")
 </template>
 
 <script>
