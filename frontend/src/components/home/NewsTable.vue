@@ -7,17 +7,17 @@
       th.subtitle-1.text-center
         v-icon mdi-calendar
     tbody
-      tr(v-for="(node,i) in newsList" :key="i" @click.stop="showDialog(node)")
+      tr(v-for="(news,i) in newsList" :key="i" @click.stop="showDialog(news)")
         td
           v-icon mdi-chevron-right
-        td {{node.title}}
-        td.text-center {{ node.date }}
+        td {{news.title}}
+        td.text-center {{ news.date }}
     v-dialog.elevation-12( v-model="dialog"
       max-width="500")
-      v-card(v-if="singleEvent")
+      v-card(v-if="event")
         v-card-title(class="primary darken-1 white--text").justify-center
           v-spacer
-          span.ml-4 {{singleEvent.title}}
+          span.ml-4 {{event.title}}
           v-spacer
           v-btn(icon dark @click="dialog = false")
             v-icon mdi-close-circle
@@ -25,16 +25,16 @@
           v-container
             v-layout(row).text-center
               v-flex.md12
-                v-img(v-if="singleEvent.banner" :src="singleEvent.banner" max-height="230" alt="Image" cover).elevation-10
+                v-img(v-if="event.img_tile" :src="event.img_tile.pathname" max-height="230" alt="Image" cover).elevation-10
               v-flex.md6.mt-6.text-center
                 v-icon.mb-1(left) mdi-calendar
-                | {{singleEvent.date}}
+                | {{event.date}}&nbsp;&nbsp;{{event.time}}
               v-flex.md6.mt-6.text-center
-                a(:href="singleEvent.link" v-if="singleEvent.link" style="text-decoration: none")
+                a(:href="event.url" v-if="event.url" style="text-decoration: none")
                   v-icon.mb-1(left) mdi-link
-                  | Link
+                  | {{event.url_name ? event.url_name : 'Link'}}
               v-flex.md12.mt-5
-                p {{singleEvent.discrption ? singleEvent.discrption : ''}}
+                p {{event.description ? event.description : ''}}
 </template>
 
 <script>
@@ -47,14 +47,21 @@ export default {
     }
   },
   data: () => ({
-    singleEvent: null,
+    event: null,
     dialog: false
   }),
+  created () {
+    this.newsList.forEach(news => {
+      news.img_tile = new URL(news.img_tile)
+      const dt = new Date(news.date)
+      news.date = dt.toDateString()
+      news.time = dt.toLocaleTimeString()
+    })
+  },
   methods: {
     showDialog (event) {
-      console.log('ll')
       this.dialog = true
-      this.singleEvent = event
+      this.event = event
     }
   }
 }
