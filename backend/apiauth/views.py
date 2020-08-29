@@ -20,7 +20,6 @@ from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
 from config.settings import FRONTEND_URL
 from .models import UserProfile
-from.serializer import UserProfileSerializer
 
 
 class AuthenticationCheckAPIView(APIView):
