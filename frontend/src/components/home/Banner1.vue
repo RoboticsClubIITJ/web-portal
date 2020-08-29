@@ -11,25 +11,40 @@ div.wrapper
       )
         div.flex-column(style="margin: auto" v-if= "!$vuetify.breakpoint.mobile")
           div.pa-3.welcome-text {{ WelcomeText }}
+          div.d-flex.justify-center.mb-5
+            div.mx-4(v-for="logo in logos")
+              v-img(:src="logo" width="100px" height="100px")
           p.pa-3.welcome-quote {{WelcomeQuote}}
         div.flex-column.mt-16(style="width:100%" v-if= "$vuetify.breakpoint.mobile")
           div.pa-7.mb-2.welcome-text(style= "font-size: 35px") {{WelcomeText}}
-          div.pa-3.welcome-quote(style="bottom:0;position: absolute;width:100%;") {{WelcomeQuote}}
+          div(style="bottom:0;position: absolute;")
+            div.d-flex.justify-center.mb-1
+              div.mx-4(v-for="logo in logos")
+                v-img(:src="logo" width="50px" height="50px")
+            div.pa-3.welcome-quote(style="width:100%;") {{WelcomeQuote}}
 </template>
 <script>
 import HeroImg from '@/assets/bg-2.jpg'
 import HeroImgMobile from '@/assets/bg-2m.jpg'
+import IitjImg from '@/assets/iitj.png'
+import GymImg from '@/assets/gymkhana-logo.png'
+import TechImg from '@/assets/tech.png'
 export default {
   name: 'Banner1',
   data: () => ({
     HeroImg,
     HeroImgMobile,
+    logos: [IitjImg, GymImg, TechImg],
     WelcomeText: 'WELCOME TO ROBOTICS CLUB IITJ',
     WelcomeQuote: '"The best way to predict the future is to invent it"'
   })
 }
 </script>
 <style scoped>
+  .logos{
+    height: 100px;
+    width: 100px;
+  }
   .welcome-quote{
     font-size: 18px;
     color: #fff;

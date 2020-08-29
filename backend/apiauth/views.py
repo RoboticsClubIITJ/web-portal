@@ -6,7 +6,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
 from django.contrib.auth.models import User
-from rest_framework.generics import GenericAPIView
+from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -18,6 +18,8 @@ import requests
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
+from config.settings import FRONTEND_URL
+from .models import UserProfile
 
 
 class AuthenticationCheckAPIView(APIView):
@@ -60,13 +62,11 @@ class LoginAPIView(APIView):
 
             data = resp.json()
         user  = User.objects.filter(email = data['email']).first()
-        new = False ## have to add if userprofile is not udated return True
         if user is None:
             user = User.objects.create_user(
                 email=data["email"],username=data["name"])
-            new = True
         login(request, user)
-        return Response({"message": "Successfully logged in", "user_new":new}, status=status.HTTP_200_OK)
+        return redirect(FRONTEND_URL+'/studentzone')
 
 
 class LogoutAPIView(APIView):
