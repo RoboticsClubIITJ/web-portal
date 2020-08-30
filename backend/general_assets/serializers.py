@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Competetion,home_carousel,news
+from .models import Competetion, HomeCarousel, News, UpEvents 
 
 class CompetetionSerializer(serializers.ModelSerializer):
     participants = serializers.StringRelatedField(many=True)
@@ -9,10 +9,15 @@ class CompetetionSerializer(serializers.ModelSerializer):
 
 class HomeCarouselSerializer(serializers.ModelSerializer):
     class Meta:
-        model = home_carousel
+        model = HomeCarousel
         fields = '__all__'
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = news
+        model = News
+        fields = '__all__'
+
+class UpEventsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UpEvents
         fields = '__all__'
