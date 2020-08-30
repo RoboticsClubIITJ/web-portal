@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Team from '../views/Team.vue'
+import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 
 import { instance } from '../api/axios'
@@ -15,7 +15,7 @@ const routes = [
   },
   {
     path: '*',
-    name: 'Comingsoon',
+    name: 'Pagenotfound',
     component: PageNotFound
   },
   {
@@ -26,7 +26,17 @@ const routes = [
   {
     path: '/team',
     name: 'Team',
-    component: Team
+    component: Comingsoon
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: Comingsoon
+  },
+  {
+    path: '/competitions',
+    name: 'Competitions',
+    component: Comingsoon
   },
   {
     path: '/resources',
@@ -46,6 +56,7 @@ const routes = [
   {
     path: '/studentzone',
     name: 'StudentZone',
+    component: Comingsoon,
     meta: { NoAP: true },
     beforeEnter (to, from, next) {
       AuthCheck(next)
