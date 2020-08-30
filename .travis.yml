@@ -10,8 +10,8 @@ before_script:
   - psql -c "ALTER ROLE robouser WITH CREATEDB;" -U postgres
   - psql -c "GRANT ALL PRIVILEGES ON DATABASE robodb TO robouser;" -U postgres
 before_install:
-  - cd backend
   - cp .env.example .env
+  - cd backend
   - export DJANGO_SETTINGS_MODULE=config.settings
 install:
   - pip3 install pipenv
