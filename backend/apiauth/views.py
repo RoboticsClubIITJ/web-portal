@@ -4,13 +4,10 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.debug import sensitive_post_parameters
 from django.contrib.auth.models import User
-from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.parsers import JSONParser
 from rest_framework import status
 
 import requests
@@ -19,7 +16,6 @@ from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
 from config.settings import FRONTEND_URL
-from .models import UserProfile
 
 
 class AuthenticationCheckAPIView(APIView):
@@ -61,10 +57,10 @@ class LoginAPIView(APIView):
             resp = requests.post('https://oauth2.googleapis.com/tokeninfo', data=token)
 
             data = resp.json()
-        user  = User.objects.filter(email = data['email']).first()
+        user = User.objects.filter(email=data['email']).first()
         if user is None:
             user = User.objects.create_user(
-                email=data["email"],username=data["name"])
+                email=data["email"], username=data["name"])
         login(request, user)
         return redirect(FRONTEND_URL+'/studentzone')
 
