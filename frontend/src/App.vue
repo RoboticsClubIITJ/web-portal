@@ -7,13 +7,19 @@
 </template>
 
 <script>
-import AppBar from '@/components/AppBar'
-import Footer from '@/components/Footer'
+import AppBar from './components/AppBar'
+import HomeTop from './components/HomeTop'
+import HelloWorld from './components/HelloWorld'
+import Details from './components/Details'
+import Footer from './components/Footer'
 export default {
   name: 'App',
 
   components: {
     AppBar,
+    HomeTop,
+    HelloWorld,
+    Details,
     Footer
   },
 
