@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Member(models.Model):
-    #Model
+    # Model
     member_name = models.CharField(max_length=60)
     email = models.EmailField(max_length=254)
 
@@ -11,13 +11,13 @@ class Member(models.Model):
 
 
 class Project(models.Model):
-    #Status 
+    # Status
     STATUS_CHOICE = (
         ('Ongoing', 'Ongoing'),
         ('Completed', 'Completed')
     )
 
-    #Model
+    # Model
     name = models.CharField(max_length=60)
     description = models.TextField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICE)
