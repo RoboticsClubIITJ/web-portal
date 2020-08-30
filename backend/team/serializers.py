@@ -13,6 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
     techstack = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = UserProfile
         fields = '__all__'
