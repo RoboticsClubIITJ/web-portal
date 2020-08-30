@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import Team from '../views/Team.vue'
+import About from '../components/home/Banner3.vue'
 
 import { instance } from '../api/axios'
 Vue.use(VueRouter)
@@ -11,7 +13,8 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: { loader: true }
   },
   {
     path: '*',
@@ -21,7 +24,7 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    component: About
   },
   {
     path: '/team',
