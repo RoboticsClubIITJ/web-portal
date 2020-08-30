@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Team from '../views/Team.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 
 import { instance } from '../api/axios'
 Vue.use(VueRouter)
@@ -11,6 +12,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '*',
+    name: 'Comingsoon',
+    component: PageNotFound
   },
   {
     path: '/about',
