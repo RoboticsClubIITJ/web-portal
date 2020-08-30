@@ -5,15 +5,33 @@
           v-img(:src= "ShapeImg")
         div.d-flex.justify-center
           div.dream-dots(v-for= "color in DotColors" :class="color")
-        div.welcome-text.pa-10 Our Awesome Team
+        div.h-text.pa-10 Our Awesome Team
+        div.container
+          v-row(v-if="pors.length")
+            v-col.pa-5(
+            cols=12 sm=12 md=4 lg=3
+            v-for="member in pors" :key="member.id")
+              ProfileCard(:member="member")
+          v-row(v-if="webs.length")
+            v-col.pa-5(
+            cols=12 sm=12 md=4 lg=3
+            v-for="member in webs" :key="member.id")
+              ProfileCard(:member="member")
 </template>
 <script>
 import ShapeImg from '@/assets/shape1.png'
+import ProfileCard from '@/components/home/ProfileCard'
 export default {
   name: 'Team',
+  components: {
+    ProfileCard
+  },
   data: () => ({
     ShapeImg,
-    DotColors: ['red', 'green', 'blue', 'purple', 'orange', 'yellow']
+    DotColors: ['red', 'green', 'blue', 'purple', 'orange', 'yellow'],
+    pors: [],
+    webs: [],
+    members: [{ name: 'manav kapoor', position: 'Web development', links: [{ url: 'google', icon: 'mdi-facebook' }] }]
   })
 }
 </script>
@@ -25,7 +43,7 @@ export default {
     border-radius: 50%;
     margin-right: 5px;
   }
-  .welcome-text{
+  .h-text{
     text-align: center;
     font-size: 30px;
     font-weight: 500;
