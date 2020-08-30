@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import TechStack, Member
+from .models import Member
 
-admin.site.register(TechStack)
 admin.site.register(Member)
