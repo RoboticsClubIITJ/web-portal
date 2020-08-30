@@ -1,3 +1,5 @@
+# Robotics Club Web Portal [![Build Status](https://travis-ci.org/RoboticsClubIITJ/web-portal.svg?branch=master)](https://travis-ci.org/RoboticsClubIITJ/web-portal) ![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg) ![Django 2.2.9](https://img.shields.io/badge/Django-2.2.9-green.svg) ![Vue 2.6.11](https://img.shields.io/badge/Vue-2.6.11-green.svg)
+
 ## Getting Started
 
 Ensure that you have installed [Docker](https://docs.docker.com/install/) (with [Docker Compose](https://docs.docker.com/compose/install/)).
