@@ -7,7 +7,8 @@ class Member(models.Model):
     POSITION = (
         ('Member', 'Member'),
         ('Vice-Captain', 'Vice-Captain'),
-        ('Captain', 'Captain')
+        ('Captain', 'Captain'),
+        ('Mentor', 'Mentor')
     )
 
     # Model
