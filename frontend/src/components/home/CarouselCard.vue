@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-carousel-item(v-for="card in Carousel")
+    v-carousel-item(v-for="(card, idx) in Carousel" :key="idx")
       v-card(@click="showDialog(card)")
         v-img(
           :src="card.img_tile.pathname"
