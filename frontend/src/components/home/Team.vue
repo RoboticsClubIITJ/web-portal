@@ -9,18 +9,19 @@
         div.container
           v-row(v-if="pors.length")
             v-col.pa-5(
-            cols=12 sm=12 md=4 lg=3
+            cols=12 sm=12 md=4 lg=4
             v-for="member in pors" :key="member.id")
               ProfileCard(:member="member")
           v-row(v-if="webs.length")
             v-col.pa-5(
-            cols=12 sm=12 md=4 lg=3
+            cols=12 sm=12 md=3 lg=3
             v-for="member in webs" :key="member.id")
               ProfileCard(:member="member")
 </template>
 <script>
 import ShapeImg from '@/assets/shape1.png'
 import ProfileCard from '@/components/home/ProfileCard'
+import { instance } from '@/api/axios'
 export default {
   name: 'Team',
   components: {
@@ -32,7 +33,20 @@ export default {
     pors: [],
     webs: [],
     members: [{ name: 'manav kapoor', position: 'Web development', links: [{ url: 'google', icon: 'mdi-facebook' }] }]
-  })
+  }),
+  async created () {
+    const resp = await instance.get('/team/homeview')
+    var team = resp.data
+    var cap = []
+    var vcap = []
+    team.forEach(element => {
+      element.member.avatar = new URL(element.member.avatar)
+      if (element.position === 'Captain') cap.push(element)
+      else if (element.position === 'Vice-Captain') vcap.push(element)
+      else this.webs.push(element)
+      this.pors = [...cap, ...vcap]
+    })
+  }
 }
 </script>
 <style scoped>

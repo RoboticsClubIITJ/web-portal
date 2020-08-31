@@ -2,18 +2,23 @@
   v-card.mx-auto.pa-7.p-card(style="border-radius:10%" max-width=300 elevation=16)
     center(:class="$vuetify.breakpoint.mobile ? 'd-flex' : ''")
       v-avatar(size=100)
-        v-img.orange
+        v-img(:src="member.member.avatar.pathname")
       v-spacer(v-if= "$vuetify.breakpoint.mobile")
       v-divider.ma-5(v-if= "!$vuetify.breakpoint.mobile")
       div.team-info
-        h5 {{member.name}}
+        h5 {{member.member.user.first_name}}&nbsp;{{member.member.user.last_name}}
         p {{member.position}}
         v-divider.ma-2
         div.d-flex.justify-center
-          v-hover(v-slot:default ="{ hover }"
-          v-for="link in member.links")
-            a(:href="link.url" style="text-decoration: none;")
-              v-icon(small :color ="hover?'#00d0ff':'#007bff'") {{link.icon}}
+          v-hover.mx-4(v-slot:default ="{ hover }" v-if="member.member.user.email")
+            a(:href="'mailto:'+member.member.user.email" style="text-decoration: none;")
+              v-icon(small :color ="hover?'#00d0ff':'#007bff'") mdi-gmail
+          v-hover.mx-4(v-slot:default ="{ hover }" v-if="member.member.github")
+            a(:href="member.member.github" style="text-decoration: none;")
+              v-icon(small :color ="hover?'#00d0ff':'#007bff'") mdi-github-circle
+          v-hover.mx-4(v-slot:default ="{ hover }" v-if="member.member.linkedin")
+            a(:href="member.member.linkedin" style="text-decoration: none;")
+              v-icon(small :color ="hover?'#00d0ff':'#007bff'") mdi-linkedin
 </template>
 <script>
 export default {
