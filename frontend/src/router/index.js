@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Team from '../views/Team.vue'
+import Comingsoon from '../views/Comingsoon.vue'
+import PageNotFound from '../views/PageNotFound.vue'
 import About from '../components/home/Banner3.vue'
 
 import { instance } from '../api/axios'
@@ -15,6 +16,11 @@ const routes = [
     meta: { loader: true }
   },
   {
+    path: '*',
+    name: 'Pagenotfound',
+    component: PageNotFound
+  },
+  {
     path: '/about',
     name: 'About',
     component: About
@@ -22,7 +28,17 @@ const routes = [
   {
     path: '/team',
     name: 'Team',
-    component: Team
+    component: Comingsoon
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: Comingsoon
+  },
+  {
+    path: '/competitions',
+    name: 'Competitions',
+    component: Comingsoon
   },
   {
     path: '/resources',
@@ -42,6 +58,7 @@ const routes = [
   {
     path: '/studentzone',
     name: 'StudentZone',
+    component: Comingsoon,
     meta: { NoAP: true },
     beforeEnter (to, from, next) {
       AuthCheck(next)
