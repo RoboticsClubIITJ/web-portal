@@ -22,10 +22,11 @@ class UserProfile(models.Model):
         ('PhD', 'PhD')
     )
     YEAR_CHOICES = (
-        ('1', 'Freshman Year'),
-        ('2', 'Sophomore Year'),
-        ('3', 'Pre-final Year'),
-        ('4', 'Final Year')
+        ('Freshman Year', 'Freshman Year'),
+        ('Sophomore Year', 'Sophomore Year'),
+        ('Pre-final Year', 'Pre-final Year'),
+        ('Final Year', 'Final Year'),
+        ('Alumini', 'Alumini')
     )
     GENDER_CHOICES = (
         ('M', 'Male'),
