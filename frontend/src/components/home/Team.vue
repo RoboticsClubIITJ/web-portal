@@ -31,8 +31,7 @@ export default {
     ShapeImg,
     DotColors: ['red', 'green', 'blue', 'purple', 'orange', 'yellow'],
     pors: [],
-    webs: [],
-    members: [{ name: 'manav kapoor', position: 'Web development', links: [{ url: 'google', icon: 'mdi-facebook' }] }]
+    webs: []
   }),
   async created () {
     const resp = await instance.get('/team/homeview')
