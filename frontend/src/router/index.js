@@ -3,7 +3,6 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
-import Team from '../views/Team.vue'
 import About from '../components/home/Banner3.vue'
 
 import { instance } from '../api/axios'
