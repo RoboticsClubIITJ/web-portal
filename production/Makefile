@@ -8,17 +8,20 @@ build:
 .env:
 	@cp .env.example .env
 
-dev-start: .env
+launch: .env
 	@docker-compose up -d
 
-dev-stop:
+stop:
 	@docker-compose down
 
-dev-logs:
+logs:
 	@docker-compose logs -f
 
-exec:
+ex-django:
 	@docker exec -it $$(echo "$$(docker ps --filter "name=django")" | awk 'NR > 1 {print $$1}') sh
 
-pull:
-	@git pull origin master
+ex-vue:
+	@docker exec -it $$(echo "$$(docker ps --filter "name=vue")" | awk 'NR > 1 {print $$1}') sh
+
+ex-postgresql:
+	@docker exec -it $$(echo "$$(docker ps --filter "name=postgresql")" | awk 'NR > 1 {print $$1}') sh

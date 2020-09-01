@@ -140,9 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets", "static"),
-]
+
 STATIC_URL = '/django_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='assets/staticfiles', cast=str))
 
@@ -172,7 +170,4 @@ FRONTEND_URL = 'http://'+config('HOST_ADDRESS', default='localhost:8080')
 
 LOGIN_URL = FRONTEND_URL + '/api/auth/login'
 
-CORS_ORIGIN_WHITELIST = [
-    "http://localhost:8080",
-    "http://192.168.0.106:8080"
-]
+CORS_ORIGIN_WHITELIST = [FRONTEND_URL]

@@ -10,6 +10,7 @@ services:
     env_file: .env
     environment:
       - DB_HOST=postgresql
+      - MODE=Production
       - PORT=8000
     ports:
       - 8000:8000
