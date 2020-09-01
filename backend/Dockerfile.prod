@@ -21,6 +21,7 @@ RUN pip install gunicorn
 
 WORKDIR /app
 COPY . /app
-RUN chmod +x entrypoint.sh
-ENTRYPOINT [ "./entrypoint.sh" ]
+COPY ./entrypoint /home/app/entrypoint.sh
+RUN chmod +x /home/entrypoint.sh
+ENTRYPOINT [ "/home/entrypoint.sh" ]
 
