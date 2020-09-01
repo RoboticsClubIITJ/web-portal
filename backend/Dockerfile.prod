@@ -21,5 +21,5 @@ RUN pip install gunicorn
 
 WORKDIR /app
 COPY . /app
-RUN python manage.py collectstatic --no-default-ignore
+ENTRYPOINT [ "./entrypoint.sh" ]
 
