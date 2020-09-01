@@ -17,7 +17,7 @@ services:
     volumes:
       - ../backend:/app
       - django_static_files:/app/assets/staticfiles
-      - django_media_files:/app/assets/mediafiles
+      - django_media_files:/app/assets/media
     depends_on:
       - postgresql
     networks:
@@ -75,3 +75,4 @@ volumes:
     driver: local
   django_static_files:
   django_media_files:
+    driver: local
