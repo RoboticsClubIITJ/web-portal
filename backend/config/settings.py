@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY', default= 'dcyz)+52d)n1f3d6dsf&g0p6a($(v4&rvu=9u3u6fib9=kzy$8', cast=str)
+SECRET_KEY = config('SECRET_KEY', default='dcyz)+52d)n1f3d6dsf&g0p6a($(v4&rvu=9u3u6fib9=kzy$8', cast=str)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=True, cast=bool)
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'projects.apps.ProjectsConfig',
     'team.apps.TeamConfig',
     'apiauth.apps.ApiauthConfig',
+    'general_assets.apps.GeneralAssetsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,7 +141,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "assets","static"),
+    os.path.join(BASE_DIR, "assets", "static"),
 ]
 STATIC_URL = '/django_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, config('STATIC_PATH', default='assets/staticfiles', cast=str))
@@ -149,7 +150,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, config('MEDIA_PATH', default='assets/media',
 MEDIA_URL = '/django_media/'
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions. 
+    # Use Django's standard `django.contrib.auth` permissions.
     # 'rest_framework.permissions.IsAuthenticated',
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'apiauth.authentication.SessionAuthentication',
@@ -167,7 +168,9 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', ca
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
-LOGIN_URL = 'http://'+config('HOST_ADDRESS',default='localhost:8080')+'/api/auth/login'
+FRONTEND_URL = 'http://'+config('HOST_ADDRESS', default='localhost:8080')
+
+LOGIN_URL = FRONTEND_URL + '/api/auth/login'
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:8080",

@@ -5,19 +5,19 @@ addons:
   postgresql: "9.6"
 dist: xenial
 before_script:
-  - cp .env.example .env
   - psql -c "CREATE DATABASE robodb;" -U postgres
   - psql -c "CREATE USER robouser WITH LOGIN PASSWORD 'password';" -U postgres
   - psql -c "ALTER ROLE robouser WITH CREATEDB;" -U postgres
   - psql -c "GRANT ALL PRIVILEGES ON DATABASE robodb TO robouser;" -U postgres
 before_install:
+  - cp .env.example .env
+  - cd backend
   - export DJANGO_SETTINGS_MODULE=config.settings
 install:
   - pip3 install pipenv
   - pipenv install --dev
 script:
   - source "$(pipenv --venv)"/bin/activate
-  - cd backend
   - flake8 .
   - python manage.py makemigrations
   - python manage.py migrate

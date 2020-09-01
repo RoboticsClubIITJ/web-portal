@@ -8,14 +8,17 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['first_name', 'last_name', 'email']
 
+
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
+    techstack = serializers.StringRelatedField(many=True)
+
     class Meta:
         model = UserProfile
-        fields = ['user', 'roll_number', 'year', 'phone', 'avatar']
+        fields = '__all__'
+
 
 class TeamSerializer(serializers.ModelSerializer):
-    techstack = serializers.StringRelatedField(many=True)
     member = ProfileSerializer(read_only=True)
 
     class Meta:

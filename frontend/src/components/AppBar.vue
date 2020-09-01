@@ -42,9 +42,10 @@ export default {
       { text: 'Home', icon: 'mdi-home', router: '/' },
       { text: 'About', icon: 'mdi-information', router: '/about' },
       { text: 'Projects', icon: 'mdi-briefcase-edit-outline' },
-      { text: 'Inventory', icon: 'mdi-shopping' },
+      { text: 'Competitions', icon: 'mdi-briefcase-edit-outline' },
+      { text: 'Resources', icon: 'mdi-shopping', router: '/resources' },
       { text: 'Team', icon: 'mdi-human-male-male', router: '/team' },
-      { text: 'Profile', icon: 'mdi-account' }
+      { text: 'Student Zone', icon: 'mdi-account', router: '/studentzone' }
     ]
   }),
   methods: {
