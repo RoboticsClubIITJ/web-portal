@@ -10,23 +10,19 @@ services:
     env_file: .env
     environment:
       - DB_HOST=postgresql
+      - MODE=Production
       - PORT=8000
     ports:
       - 8000:8000
     volumes:
       - ../backend:/app
       - django_static_files:/app/assets/staticfiles
-      - django_media_files:/app/assets/mediafiles
+      - django_media_files:/app/assets/media
     depends_on:
       - postgresql
     networks:
       - app-network
-    command:
-      - /bin/sh
-      - -c
-      - |
-        python manage.py migrate
-        gunicorn -b :8000 config.wsgi
+    command: gunicorn -b :8000 config.wsgi
 
   vue:
     build:
@@ -79,3 +75,4 @@ volumes:
     driver: local
   django_static_files:
   django_media_files:
+    driver: local

@@ -4,28 +4,24 @@ ENV PYROOT /pyroot
 ENV PYTHONUSERBASE $PYROOT
 
 # Build Container
-FROM base AS builder
-ARG BUILD_DEPS="gcc python3-dev musl-dev postgresql-dev"
+ARG BUILD_DEPS="gcc python3-dev musl-dev postgresql-dev jpeg-dev zlib-dev libjpeg"
 RUN apk --no-cache add ${BUILD_DEPS}
+RUN pip install --upgrade pip
 RUN pip install pipenv
-COPY Pipfile* ./
-RUN PIP_USER=1 PIP_IGNORE_INSTALLED=1 pipenv install --system --deploy \
+COPY Pipfile* Pipfile.lock* ./
+RUN PIP_USER=1 PIP_IGNORE_INSTALLED=1 pipenv install --system --deploy --ignore-pipfile --dev \
     && find /usr/local \
         \( -type d -a -name test -o -name tests \) \
         -o \( -type f -a -name '*.pyc' -o -name '*.pyo' \) \
         -exec rm -rf '{}' \+
 
-# Runtime Container
-FROM base AS dep-stage
 ARG RUNTIME_DEPS="libcrypto1.1 libssl1.1 libpq"
 RUN apk --no-cache add ${RUNTIME_DEPS}
-COPY --from=builder $PYROOT/lib/ $PYROOT/lib/
 RUN pip install gunicorn
 
 WORKDIR /app
 COPY . /app
-RUN ls
-RUN python manage.py collectstatic --no-default-ignore
+COPY ./entrypoint /home/app/entrypoint.sh
+RUN chmod +x /home/entrypoint.sh
+ENTRYPOINT [ "/home/entrypoint.sh" ]
 
-# production stage
-#FROM nginx:stable-alpine as production-stage
