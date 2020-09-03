@@ -27,10 +27,11 @@ class UpEventsAPIView(generics.ListAPIView):
     queryset = UpEvents.objects.all().order_by('-date')
     serializer_class = UpEventsSerializer
 
+
 class ProfileSelectListAPIView(APIView):
     def get(self, request, *args, **kwargs):
         data = {}
-        data['stacks'] = [{ 'text': stack.tech_name } for stack in TechStack.objects.all()]
+        data['stacks'] = [{'text': stack.tech_name} for stack in TechStack.objects.all()]
         data['gender'] = [{'text': y, 'value': x} for x, y in UserProfile.GENDER_CHOICES]
         data['prog'] = [{'text': y, 'value': x} for x, y in UserProfile.PROG_CHOICES]
         data['branch'] = [{'text': y, 'value': x} for x, y in UserProfile.BRANCH_CHOICES]

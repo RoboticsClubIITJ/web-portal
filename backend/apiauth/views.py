@@ -107,7 +107,7 @@ class ProfileAPIView(APIView):
     @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
-    
+
     def post(self, request, *args, **kwargs):
         data = {}
         for key in request.data.keys():
@@ -117,10 +117,9 @@ class ProfileAPIView(APIView):
         user.last_name = data.pop('last_name')
         user.save()
         stacks = data.pop('stack')
-        profile = UserProfile.objects.create(user = user, **data)
+        profile = UserProfile.objects.create(user=user, **data)
         for stack in stacks:
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
         profile.save()
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
-    
