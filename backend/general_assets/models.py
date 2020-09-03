@@ -29,6 +29,7 @@ class HomeCarousel(models.Model):
         verbose_name = 'Home Carousel'
         verbose_name_plural = 'Home Carousel'
 
+
 class News(models.Model):
     title = models.CharField(max_length=50, blank=True, default='')
     url = models.URLField(max_length=200, null=True, blank=True)
