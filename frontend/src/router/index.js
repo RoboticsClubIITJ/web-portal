@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import CreateProfile from '../views/CreateProfile.vue'
 import About from '../components/home/Banner3.vue'
 
 import { instance } from '../api/axios'
@@ -59,10 +60,16 @@ const routes = [
     path: '/studentzone',
     name: 'StudentZone',
     component: Comingsoon,
-    meta: { NoAP: true },
+    meta: { NoFooter: true, NoAppBar: true, NoBackground: true },
     beforeEnter (to, from, next) {
       AuthCheck(next)
     }
+  },
+  {
+    path: '/create-profile',
+    name: 'CreateProfile',
+    component: CreateProfile,
+    meta: { NoFooter: true, NoAppBar: true, NoBackground: true }
   }
 ]
 
