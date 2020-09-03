@@ -1,14 +1,15 @@
 <template lang="pug">
   v-app
-    div(:class="$route.meta.NoBackground ? '' : 'main-content-wrapper'")
-      AppBar(v-if="!$route.meta.NoAppBar")
+    div(:class="!!$route.meta.Background ? 'main-content-wrapper' : ''")
+      AppBar(v-if="!!$route.meta.AppBar")
       router-view
-      Footer(v-if="!$route.meta.NoFooter")
+      Footer(v-if="!!$route.meta.Footer")
 </template>
 
 <script>
 import AppBar from '@/components/AppBar'
 import Footer from '@/components/Footer'
+import { instance } from '@/api/axios'
 export default {
   name: 'App',
 
@@ -18,7 +19,14 @@ export default {
   },
 
   data: () => ({
-  })
+  }),
+
+  created () {
+    instance.get('/auth/csrf-token/').then(response => {
+      const token = response.data.csrftoken
+      document.cookie = `csrftoken = ${token}`
+    })
+  }
 }
 </script>
 <style scoped>
