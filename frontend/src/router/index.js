@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import About from '../components/home/Banner3.vue'
+import Team from '../views/Team.vue'
 
 import { instance } from '../api/axios'
 Vue.use(VueRouter)
@@ -28,7 +29,7 @@ const routes = [
   {
     path: '/team',
     name: 'Team',
-    component: Comingsoon
+    component: Team
   },
   {
     path: '/projects',
