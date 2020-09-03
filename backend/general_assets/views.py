@@ -2,15 +2,15 @@ from .models import Competetion, HomeCarousel, News, UpEvents
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .serializers import CompetetionSerializer, HomeCarouselSerializer, NewsSerializer
+from .serializers import CompetitionSerializer, HomeCarouselSerializer, NewsSerializer
 from .serializers import UpEventsSerializer
 
 from apiauth.models import UserProfile, TechStack
 
 
-class CompetetionsAPIView(generics.ListAPIView):
-    queryset = Competetion.objects.all()
-    serializer_class = CompetetionSerializer
+class CompetitionsAPIView(generics.ListAPIView):
+    queryset = Competition.objects.all()
+    serializer_class = CompetitionSerializer
 
 
 class HomeCarouselAPIView(generics.ListAPIView):

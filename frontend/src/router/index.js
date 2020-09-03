@@ -5,6 +5,7 @@ import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import CreateProfile from '../views/CreateProfile.vue'
 import About from '../components/home/Banner3.vue'
+import Team from '../views/Team.vue'
 
 import store from '@/store'
 Vue.use(VueRouter)
@@ -32,7 +33,7 @@ const routes = [
     path: '/team',
     name: 'Team',
     meta: { Footer: true, AppBar: true, Background: true },
-    component: Comingsoon
+    component: Team
   },
   {
     path: '/projects',
