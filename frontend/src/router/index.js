@@ -63,11 +63,19 @@ const routes = [
     }
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    // redirect to Google Login
+    beforeEnter (to, from, next) {
+      store.dispatch('logout')
+    }
+  },
+  {
     path: '/studentzone',
     name: 'StudentZone',
     component: Comingsoon,
     beforeEnter (to, from, next) {
-      if (store.state.isAuthenticated) next()
+      if (store.state.isAuthenticated && store.state.userProfile != null) next()
       else {
         store.dispatch('CheckAuthentication', next)
       }
