@@ -5,6 +5,7 @@ import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import About from '../components/home/Banner3.vue'
 import Team from '../views/Team.vue'
+import Projects from '../views/Projects.vue'
 
 import { instance } from '../api/axios'
 Vue.use(VueRouter)
@@ -34,7 +35,7 @@ const routes = [
   {
     path: '/projects',
     name: 'Projects',
-    component: Comingsoon
+    component: Projects
   },
   {
     path: '/competitions',
