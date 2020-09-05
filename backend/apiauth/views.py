@@ -6,7 +6,7 @@ from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -16,6 +16,8 @@ from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
 from config.settings import FRONTEND_URL
+from team.serializers import UserSerializer, ProfileSerializer
+from .models import UserProfile, TechStack
 
 
 class AuthenticationCheckAPIView(APIView):
@@ -26,6 +28,13 @@ class AuthenticationCheckAPIView(APIView):
         data = {
             'message': 'Authorized' if authenticated else 'Unauthorized'
         }
+        if authenticated:
+            data['user'] = UserSerializer(request.user).data
+            profile = UserProfile.objects.filter(user=request.user)
+            if profile.exists():
+                data['userprofile'] = ProfileSerializer(profile.first()).data
+            else:
+                data['userprofile'] = False
         status_code = status.HTTP_200_OK if authenticated else status.HTTP_401_UNAUTHORIZED
         return Response(data, status=status_code)
 
@@ -89,3 +98,28 @@ class CsrfTokenAPIView(APIView):
     def get(self, request, *args, **kwargs):
         token = csrf.get_token(request)
         return Response({"csrftoken": token}, status=status.HTTP_200_OK)
+
+
+class ProfileAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    @method_decorator(never_cache)
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        data = {}
+        for key in request.data.keys():
+            data[key] = request.data.get(key)
+        user = request.user
+        user.first_name = data.pop('first_name')
+        user.last_name = data.pop('last_name')
+        user.save()
+        stacks = data.pop('stack')
+        profile = UserProfile.objects.create(user=user, **data)
+        for stack in stacks:
+            tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
+            profile.techstack.add(tech_stack)
+        profile.save()
+        return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)

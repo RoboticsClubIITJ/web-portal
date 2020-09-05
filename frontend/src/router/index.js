@@ -3,11 +3,12 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
+import CreateProfile from '../views/CreateProfile.vue'
 import About from '../components/home/Banner3.vue'
 import Team from '../views/Team.vue'
 import Projects from '../views/Projects.vue'
 
-import { instance } from '../api/axios'
+import store from '@/store'
 Vue.use(VueRouter)
 
 const routes = [
@@ -15,31 +16,36 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
-    meta: { loader: true }
+    meta: { Footer: true, AppBar: true, Background: true }
   },
   {
     path: '*',
     name: 'Pagenotfound',
-    component: PageNotFound
+    component: PageNotFound,
+    meta: { Footer: true, AppBar: true, Background: true }
   },
   {
     path: '/about',
     name: 'About',
+    meta: { Footer: true, AppBar: true, Background: true },
     component: About
   },
   {
     path: '/team',
     name: 'Team',
+    meta: { Footer: true, AppBar: true, Background: true },
     component: Team
   },
   {
     path: '/projects',
     name: 'Projects',
+    meta: { Footer: true, AppBar: true, Background: true },
     component: Projects
   },
   {
     path: '/competitions',
     name: 'Competitions',
+    meta: { Footer: true, AppBar: true, Background: true },
     component: Comingsoon
   },
   {
@@ -58,12 +64,31 @@ const routes = [
     }
   },
   {
+    path: '/logout',
+    name: 'Logout',
+    // redirect to Google Login
+    beforeEnter (to, from, next) {
+      store.dispatch('logout')
+    }
+  },
+  {
     path: '/studentzone',
     name: 'StudentZone',
     component: Comingsoon,
-    meta: { NoAP: true },
     beforeEnter (to, from, next) {
-      AuthCheck(next)
+      if (store.state.isAuthenticated && store.state.userProfile != null) next()
+      else {
+        store.dispatch('CheckAuthentication', next)
+      }
+    }
+  },
+  {
+    path: '/create-profile',
+    name: 'CreateProfile',
+    component: CreateProfile,
+    beforeEnter (to, from, next) {
+      if (store.state.isAuthenticated && store.state.userProfile === null) next()
+      else next({ name: 'StudentZone' })
     }
   }
 ]
@@ -72,14 +97,5 @@ const router = new VueRouter({
   mode: 'history',
   routes
 })
-
-var AuthCheck = async function (next) {
-  try {
-    await instance.get('/auth/auth-check')
-    next()
-  } catch (err) {
-    next({ name: 'Login' })
-  }
-}
 
 export default router
