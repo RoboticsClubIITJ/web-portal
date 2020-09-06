@@ -50,7 +50,7 @@
             v-text-field( prepend-icon="mdi-linkedin" label="Linkedin Profile LInk" v-model="linkedin"
             :rules="[v => /linkedin.com/.test(v) || !v || 'Enter a valid link', ]")
           v-col(cols=12 lg=4 sm=12)
-            v-text-field( prepend-icon="mdi-github-circle" label="Linkedin Profile LInk" v-model="github"
+            v-text-field( prepend-icon="mdi-github-circle" label="GitHub Profile LInk" v-model="github"
             :rules="[v => /github.com/.test(v) || !v || 'Enter a valid link', ]")
         v-row.justify-center.mx-10.mb-10
           v-combobox( v-model="stack" :items="StackChoices" :search-input.sync="stacksearch"
@@ -107,7 +107,9 @@ export default {
     validate () {
       this.$refs.form.validate()
       var form = new FormData()
-      form.append('avatar', this.file, this.file.name)
+      try {
+        form.append('avatar', this.file, this.file.name)
+      } catch {}
       form.append('first_name', this.first_name)
       form.append('last_name', this.last_name)
       form.append('roll_number', this.roll_number)
