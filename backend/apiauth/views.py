@@ -118,7 +118,7 @@ class ProfileAPIView(APIView):
         user.save()
         stacks = data.pop('stack')
         profile = UserProfile.objects.create(user=user, **data)
-        for stack in stacks:
+        for stack in stacks.split(','):
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
         profile.save()
