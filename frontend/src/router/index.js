@@ -4,7 +4,7 @@ import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import About from '../components/home/Banner3.vue'
-
+import Competetions from '../components/Competetions.vue'
 import { instance } from '../api/axios'
 Vue.use(VueRouter)
 
@@ -36,14 +36,14 @@ const routes = [
     component: Comingsoon
   },
   {
-    path: '/competitions',
-    name: 'Competitions',
-    component: Comingsoon
+    path: '/competetions',
+    name: 'Competetions',
+    component: Competetions
   },
   {
     path: '/resources',
     // redirect to drive
-    beforeEnter (to, from, next) {
+    beforeEnter () {
       window.location = 'https://drive.google.com/drive/u/1/folders/1TMZxnLB4Fp9LztqkkzKcpaM5b-H7S8lI'
     }
   },
@@ -51,7 +51,7 @@ const routes = [
     path: '/login',
     name: 'Login',
     // redirect to Google Login
-    beforeEnter (to, from, next) {
+    beforeEnter () {
       window.location = '/api/auth/login'
     }
   },
@@ -60,7 +60,7 @@ const routes = [
     name: 'StudentZone',
     component: Comingsoon,
     meta: { NoAP: true },
-    beforeEnter (to, from, next) {
+    beforeEnter (next) {
       AuthCheck(next)
     }
   }
