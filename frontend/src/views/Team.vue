@@ -73,7 +73,7 @@ export default {
       this.members = res.data
       this.members.forEach(member => {
         member.member.avatar = new URL(member.member.avatar)
-      });
+      })
     } catch (e) {
       console.log(e)
     }
@@ -85,7 +85,7 @@ export default {
         this.members = res.data
         this.members.forEach(member => {
           member.member.avatar = new URL(member.member.avatar)
-        });
+        })
       } catch (e) {
         console.log(e)
       }
