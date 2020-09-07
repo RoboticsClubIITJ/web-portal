@@ -73,6 +73,8 @@ export default {
       this.members = res.data
       this.members.forEach(member => {
         member.member.avatar = new URL(member.member.avatar)
+        member.member.github = new URL(member.member.github)
+        member.member.linkedin = new URL(member.member.linkedin)
       })
     } catch (e) {
       console.log(e)
@@ -85,6 +87,8 @@ export default {
         this.members = res.data
         this.members.forEach(member => {
           member.member.avatar = new URL(member.member.avatar)
+          member.member.github = new URL(member.member.github)
+          member.member.linkedin = new URL(member.member.linkedin)
         })
       } catch (e) {
         console.log(e)
