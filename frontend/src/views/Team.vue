@@ -21,7 +21,7 @@
             <v-img src="@/assets/member-bg4.jpg" height="140" width="100%" style="border-top-left-radius: 25px; border-top-right-radius: 25px;"></v-img>
             <mdb-card-body class="text-center pb-0" cascade>
               <v-avatar class="ma-2" size="140" style="margin-top: -90px !important; border: 5px white solid">
-                <v-img :src="member.member.avatar"></v-img>
+                <v-img :src="member.member.avatar.pathname"></v-img>
               </v-avatar>
               <mdb-card-title><strong>{{member.member.user.first_name}} {{member.member.user.last_name}}</strong></mdb-card-title>
               <h5 style="color:#4A148C"><strong>{{member.position}}</strong></h5>
@@ -71,6 +71,11 @@ export default {
     try {
       const res = await instance.get('/team')
       this.members = res.data
+      this.members.forEach(member => {
+        member.member.avatar = new URL(member.member.avatar)
+        member.member.github = new URL(member.member.github)
+        member.member.linkedin = new URL(member.member.linkedin)
+      })
     } catch (e) {
       console.log(e)
     }
@@ -80,6 +85,11 @@ export default {
       try {
         const res = await instance.get(`/team?search=${searchData}`)
         this.members = res.data
+        this.members.forEach(member => {
+          member.member.avatar = new URL(member.member.avatar)
+          member.member.github = new URL(member.member.github)
+          member.member.linkedin = new URL(member.member.linkedin)
+        })
       } catch (e) {
         console.log(e)
       }
