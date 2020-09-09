@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Deployment CD
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
     needs: [build]
     steps:
       - name: Deploy to server
-      - uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.HOST_IP }}
           username: ${{ secrets.USER }}
