@@ -41,6 +41,9 @@ export default {
 }
 </script>
 <style scoped>
+  *{
+  font-family: Arial, Helvetica, sans-serif;
+   }
   .logos{
     height: 100px;
     width: 100px;
