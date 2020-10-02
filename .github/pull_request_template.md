@@ -1,5 +1,6 @@
 ### Description
 Include a summary of the change you've made and list any dependencies that are required for this change.
+Add relevant screenshots if any UI changes were made.
 
 Fixes # [ISSUE NUMBER HERE]
 
