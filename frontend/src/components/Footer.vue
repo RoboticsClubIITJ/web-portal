@@ -46,9 +46,9 @@
         fluid
       >
       <div class=" pad col-sm-12 col-md-12">
-        <h4 class="pad text-center">&copy;2020 COPYRIGHT <span style="padding:1%">|</span><br v-if="$vuetify.breakpoint.mobile">
+        <h6 class="pad text-center">&copy;2020 COPYRIGHT <span style="padding:1%">|</span><br v-if="$vuetify.breakpoint.mobile">
           Made with<span class="mdi mdi-heart red--text" style="padding:3px"></span>by Robotics WebD Team
-        </h4>
+        </h6>
       </div>
       </v-card>
     </v-footer>
