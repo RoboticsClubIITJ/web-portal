@@ -2,6 +2,14 @@
 
 ## Getting Started
 
+### Without Docker
+
+To start your frontend and backend server individually:<br>
+Follow the [Backend Readme](https://github.com/RoboticsClubIITJ/web-portal/tree/master/backend) to setup your backend server<br>
+Follow the [Frontend Readme](https://github.com/RoboticsClubIITJ/web-portal/tree/master/frontend) to setup the frontend server<br>
+
+### With Docker
+
 Ensure that you have installed [Docker](https://docs.docker.com/install/) (with [Docker Compose](https://docs.docker.com/compose/install/)).
 
 Run the development server:
