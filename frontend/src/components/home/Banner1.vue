@@ -42,7 +42,8 @@ export default {
 </script>
 <style scoped>
   *{
-  font-family: Arial, Helvetica, sans-serif;
+     font-family: "Lucida Console", Courier, monospace;
+     font-weight: bold;
    }
   .logos{
     height: 100px;
