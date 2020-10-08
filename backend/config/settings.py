@@ -11,8 +11,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 import os
 from decouple import config
 import logging
-
-
 logger = logging.getLogger()
 logger.error("Current mode: %s" % os.getenv('MODE', 'DEVELOPMENT'))
 
@@ -171,3 +169,10 @@ FRONTEND_URL = 'http://'+config('HOST', default='localhost:8080')
 LOGIN_URL = FRONTEND_URL + '/api/auth/login'
 
 CORS_ORIGIN_WHITELIST = [FRONTEND_URL]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'youremail@gmail.com'
+EMAIL_HOST_PASSWORD = 'yourpassword'

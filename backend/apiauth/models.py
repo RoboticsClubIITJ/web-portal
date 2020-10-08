@@ -52,6 +52,7 @@ class UserProfile(models.Model):
     roll_number = models.CharField(max_length=15, unique=True)
     phone = models.CharField(max_length=10, null=True)
     prog = models.CharField(max_length=5, choices=PROG_CHOICES, verbose_name='Programme', default='BT')
+    #avatar = models.ImageField(upload_to='avatar', default='default_member.png', height_field=None, width_field=None)
     year = models.CharField(max_length=20, choices=YEAR_CHOICES, default='Freshman Year')
     avatar = models.ImageField(upload_to='avatar', default='default_member.png', height_field=None, width_field=None, blank=True)
     branch = models.CharField(max_length=5, choices=BRANCH_CHOICES)
