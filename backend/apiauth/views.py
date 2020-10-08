@@ -126,7 +126,7 @@ class ProfileAPIView(APIView):
         profile.save()
         subject = 'Welcome to Robotics club IITJ'
         message = f'Hi {user.first_name}, thank you for registering with Robotics Club'
-        email_from = settings.EMAIL_HOST_USER 
-        recipient_list = [user.email, ] 
-        send_mail( subject, message, email_from, recipient_list )
+        email_from = settings.EMAIL_HOST_USER
+        recipient_list = [user.email, ]
+        send_mail(subject, message, email_from, recipient_list)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
