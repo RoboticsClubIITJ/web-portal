@@ -11,6 +11,7 @@ from rest_framework.response import Response
 from rest_framework import status
 
 import requests
+
 from django.core.mail import send_mail
 from django.conf import settings
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
