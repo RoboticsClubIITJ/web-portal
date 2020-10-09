@@ -91,6 +91,7 @@
           large
           class="ma-10"
           color="#3C40C6"
+          to="/logout"
         >
           Logout
           <v-icon right class="ml-4">
@@ -114,7 +115,6 @@ export default {
     try {
       const userProfile = await this.$store.state.userProfile
       this.profile = userProfile
-      console.log(this.profile)
     } catch (e) {
       console.log(e)
     }
