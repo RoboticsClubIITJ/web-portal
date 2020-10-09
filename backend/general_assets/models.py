@@ -54,3 +54,7 @@ class UpEvents(models.Model):
     class Meta:
         verbose_name = 'Up Events'
         verbose_name_plural = 'Up Events'
+
+
+class AssetsUpload(models.Model):
+    file = models.FileField(upload_to='uploads/')

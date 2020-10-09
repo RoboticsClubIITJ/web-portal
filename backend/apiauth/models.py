@@ -53,7 +53,8 @@ class UserProfile(models.Model):
     phone = models.CharField(max_length=10, null=True)
     prog = models.CharField(max_length=5, choices=PROG_CHOICES, verbose_name='Programme', default='BT')
     year = models.CharField(max_length=20, choices=YEAR_CHOICES, default='Freshman Year')
-    avatar = models.ImageField(upload_to='avatar', default='default_member.png', height_field=None, width_field=None, blank=True)
+    avatar = models.ImageField(
+        upload_to='avatar', default='uploads/default_member.png', height_field=None, width_field=None, blank=True)
     branch = models.CharField(max_length=5, choices=BRANCH_CHOICES)
     techstack = models.ManyToManyField(TechStack, blank=True)
     github = models.URLField(max_length=200, null=True, blank=True)
