@@ -12,14 +12,13 @@ from rest_framework import status
 
 import requests
 
-from django.core.mail import send_mail
-from django.conf import settings
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
 from config.settings import FRONTEND_URL
 from team.serializers import UserSerializer, ProfileSerializer
 from .models import UserProfile, TechStack
+from .tasks import send_welcome_email
 
 
 class AuthenticationCheckAPIView(APIView):
@@ -124,9 +123,5 @@ class ProfileAPIView(APIView):
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
         profile.save()
-        subject = 'Welcome to Robotics club IITJ'
-        message = f'Hi {user.first_name}, thank you for registering with Robotics Club'
-        email_from = settings.EMAIL_HOST_USER
-        recipient_list = [user.email, ]
-        send_mail(subject, message, email_from, recipient_list)
+        send_welcome_email.delay(user.first_name, user.email)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
