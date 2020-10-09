@@ -1,7 +1,9 @@
 from config.celery import app as celery_app # noqa: ignore=F401 
 from celery import shared_task
 
-from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+from django.utils.html import strip_tags
 
 from config.settings import EMAIL_HOST_USER
 
@@ -9,7 +11,8 @@ from config.settings import EMAIL_HOST_USER
 @shared_task
 def send_welcome_email(name, email):
     subject = 'Welcome to Robotics club IITJ'
-    message = f'Hi {name}, thank you for registering with Robotics Club'
-    email_from = EMAIL_HOST_USER
-    recipient_list = [email, ]
-    send_mail(subject, message, email_from, recipient_list)
+    html_content = render_to_string("email.html", {'user': name})
+    text_content = strip_tags(html_content)
+    message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=EMAIL_HOST_USER, to=[email, ])
+    message.attach_alternative(html_content, "text/html")
+    message.send()
