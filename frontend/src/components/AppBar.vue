@@ -26,7 +26,7 @@
               v-icon.ml-4 mdi-menu-down
           v-list(rounded color="blue darken-4").mt-5
             center
-              v-avatar(size = "100")
+              v-avatar(size = "70").pt-1
                 v-img(:src="userprofile.avatar")
             divider.p-3
             v-list-item(v-for="item in login_items" :key="item.text" @click="" :to="item.router" exact)
