@@ -123,5 +123,5 @@ class ProfileAPIView(APIView):
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
         profile.save()
-        send_welcome_email.delay(user, user.email)
+        send_welcome_email.delay(user.first_name, user.email)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
