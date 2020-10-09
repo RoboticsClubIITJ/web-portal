@@ -124,7 +124,7 @@ export default {
       instance.post('/auth/profile/', form)
         .then(res => {
           this.$store.state.userProfile = res.data
-          this.$router.push({ name: 'StudentZone' })
+          window.location = '/studentzone'
         }).catch(err => console.log(err))
     },
     reset () {

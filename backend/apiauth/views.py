@@ -9,20 +9,16 @@ from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from django.core.mail import EmailMultiAlternatives
-from django.template.loader import get_template
-from django.template.loader import render_to_string
-from django.utils.html import strip_tags
 
 import requests
 
-from django.conf import settings
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
 from config.settings import FRONTEND_URL
 from team.serializers import UserSerializer, ProfileSerializer
 from .models import UserProfile, TechStack
+from .tasks import send_welcome_email
 
 
 class AuthenticationCheckAPIView(APIView):
@@ -127,11 +123,5 @@ class ProfileAPIView(APIView):
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
         profile.save()
-        subject = 'Welcome to Robotics club IITJ'
-        html_content = render_to_string("email.html", {'user': user})
-        text_content = strip_tags(html_content)
-        message = EmailMultiAlternatives(subject=subject, body=text_content, from_email=settings.EMAIL_HOST_USER, 
-                                        to=[user.email, ])
-        message.attach_alternative(html_content, "text/html")
-        message.send()
+        send_welcome_email.delay(user, user.email)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)

@@ -7,6 +7,7 @@ import CreateProfile from '../views/CreateProfile.vue'
 import About from '../components/home/Banner3.vue'
 import Team from '../views/Team.vue'
 import Projects from '../views/Projects.vue'
+import Profile from '../views/Profile.vue'
 
 import store from '@/store'
 Vue.use(VueRouter)
@@ -52,7 +53,8 @@ const routes = [
     path: '/resources',
     // redirect to drive
     beforeEnter (to, from, next) {
-      window.location = 'https://drive.google.com/drive/u/1/folders/1TMZxnLB4Fp9LztqkkzKcpaM5b-H7S8lI'
+      window.location =
+        'https://drive.google.com/drive/u/1/folders/1TMZxnLB4Fp9LztqkkzKcpaM5b-H7S8lI'
     }
   },
   {
@@ -74,10 +76,25 @@ const routes = [
   {
     path: '/studentzone',
     name: 'StudentZone',
+    meta: { Footer: true, AppBar: true, Background: true },
+    component: Profile,
+    beforeEnter (to, from, next) {
+      if (store.state.isAuthenticated && store.state.userProfile != null) {
+        next()
+      } else {
+        store.dispatch('CheckAuthentication', next)
+      }
+    }
+  },
+  {
+    path: '/inventory',
+    name: 'Inventory',
+    meta: { Footer: false, AppBar: true, Background: true },
     component: Comingsoon,
     beforeEnter (to, from, next) {
-      if (store.state.isAuthenticated && store.state.userProfile != null) next()
-      else {
+      if (store.state.isAuthenticated && store.state.userProfile != null) {
+        next()
+      } else {
         store.dispatch('CheckAuthentication', next)
       }
     }
@@ -87,8 +104,11 @@ const routes = [
     name: 'CreateProfile',
     component: CreateProfile,
     beforeEnter (to, from, next) {
-      if (store.state.isAuthenticated && store.state.userProfile === null) next()
-      else next({ name: 'StudentZone' })
+      if (store.state.isAuthenticated && store.state.userProfile === null) {
+        next()
+      } else {
+        next({ name: 'StudentZone' })
+      }
     }
   }
 ]

@@ -12,6 +12,7 @@ services:
       - DB_HOST=postgresql
       - MODE=Production
       - PORT=8000
+      - REDIS_HOST=redis
     ports:
       - 8000:8000
     volumes:
@@ -19,6 +20,7 @@ services:
       - django_media_files:/app/assets/media
     depends_on:
       - postgresql
+      - redis
     networks:
       - app-network
     command: gunicorn -b :8000 config.wsgi
@@ -62,6 +64,32 @@ services:
     networks:
       - app-network
   
+  redis:
+    image: redis:alpine
+    container_name: redis01
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+  
+  celery:
+    image: 'robotics-web-backend-1:latest'
+    container_name: celery
+    ports: []
+    restart: unless-stopped
+    env_file: .env
+    restart: unless-stopped
+    environment:
+      - DB_HOST=postgresql
+      - MODE=Production
+      - PORT=8000
+      - REDIS_HOST=redis
+    command: celery -A config worker -l INFO
+    depends_on:
+      - django
+    networks:
+      - app-network
 
 networks:
   app-network:
