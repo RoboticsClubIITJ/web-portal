@@ -18,6 +18,7 @@ services:
     volumes:
       - django_static_files:/app/assets/staticfiles
       - django_media_files:/app/assets/media
+      - ../backend:/app
     depends_on:
       - postgresql
       - redis
