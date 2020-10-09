@@ -41,6 +41,10 @@ export default {
 }
 </script>
 <style scoped>
+  *{
+     font-family: "Lucida Console", Courier, monospace;
+     font-weight: bold;
+   }
   .logos{
     height: 100px;
     width: 100px;

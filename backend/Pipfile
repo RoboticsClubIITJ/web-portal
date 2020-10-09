@@ -15,6 +15,8 @@ djangorestframework = "==3.10.2"
 pillow = "*"
 django-cors-headers = "*"
 django-filter = "*"
+redis="*"
+celery="*"
 
 [requires]
 python_version = "3.6"

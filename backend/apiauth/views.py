@@ -18,6 +18,7 @@ from config.settings import LOGIN_URL as REDIRECT_URI
 from config.settings import FRONTEND_URL
 from team.serializers import UserSerializer, ProfileSerializer
 from .models import UserProfile, TechStack
+from .tasks import send_welcome_email
 
 
 class AuthenticationCheckAPIView(APIView):
@@ -122,4 +123,5 @@ class ProfileAPIView(APIView):
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
         profile.save()
+        send_welcome_email.delay(user.first_name, user.email)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)

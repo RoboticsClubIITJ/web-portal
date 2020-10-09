@@ -43,7 +43,13 @@ Procedure:
     ```
     python manage.py runserver :8000
     ```
-#### DummyData for Testing [OPTIONAL]:  
+#### Sarting Celery:
+To perform asunc task we use celery [mail sending etc]
+- In new terminal Run
+    ```
+    celery -A config worker -l INFO
+    ```
+#### DummyData for Testing [OPTIONAL]:
 This will populate the database with random values for testing.
 ```
 python manage.py createfixture 

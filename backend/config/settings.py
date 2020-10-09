@@ -171,3 +171,19 @@ FRONTEND_URL = 'http://'+config('HOST', default='localhost:8080')
 LOGIN_URL = FRONTEND_URL + '/api/auth/login'
 
 CORS_ORIGIN_WHITELIST = [FRONTEND_URL]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('EMAIL_HOST', default='smtp.gmail.com', cast=str)
+EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
+EMAIL_PORT = config('EMAIL_PORT', default=587, cast=int)
+EMAIL_HOST_USER = config('SERVER_EMAIL', default='', cast=str)
+EMAIL_HOST_PASSWORD = config('SERVER_EMAIL_PASSWORD', default='', cast=str)
+
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = os.getenv('REDIS_PORT', '6379')
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Calcutta'
