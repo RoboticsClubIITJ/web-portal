@@ -4,6 +4,7 @@ ARG BUILD_DEPS="gcc python3-dev musl-dev postgresql-dev jpeg-dev zlib-dev libjpe
 RUN apk --no-cache add ${BUILD_DEPS}
 RUN pip install --upgrade pip
 RUN pip install pipenv
+RUN pip install celery
 COPY Pipfile* Pipfile.lock* ./
 RUN PIP_USER=1 PIP_IGNORE_INSTALLED=1 pipenv install --system --deploy --ignore-pipfile --dev \
     && find /usr/local \
