@@ -87,6 +87,19 @@ const routes = [
     }
   },
   {
+    path: '/inventory',
+    name: 'Inventory',
+    meta: { Footer: false, AppBar: true, Background: true },
+    component: Comingsoon,
+    beforeEnter (to, from, next) {
+      if (store.state.isAuthenticated && store.state.userProfile != null) {
+        next()
+      } else {
+        store.dispatch('CheckAuthentication', next)
+      }
+    }
+  },
+  {
     path: '/create-profile',
     name: 'CreateProfile',
     component: CreateProfile,

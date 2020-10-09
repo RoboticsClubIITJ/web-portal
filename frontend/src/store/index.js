@@ -31,7 +31,7 @@ export default new Vuex.Store({
     logout ({ commit }) {
       return instance.get('/auth/logout').then(() => {
         commit('LOGOUT')
-        router.push('/')
+        location.replace('/')
       })
     },
     CheckAuthentication ({ commit }, next) {
