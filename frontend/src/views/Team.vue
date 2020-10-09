@@ -27,18 +27,18 @@
               <h5 style="color:#4A148C"><strong>{{member.position}}</strong></h5>
               <mdb-card-text style="height:200px">
                 <v-chip-group column>
-                  <v-chip small color="#4A148C" outlined class="techstack" v-for="techstack in member.member.techstack" :key="techstack">{{techstack}}</v-chip>
+                  <v-chip small color="#4A148C" fill dark class="techstack" v-for="techstack in member.member.techstack" :key="techstack">{{techstack}}</v-chip>
                 </v-chip-group>
               </mdb-card-text>
               <v-card-actions class="socials">
-                <v-btn text icon medium color='red' :href="`mailto:${member.member.user.email}`" target="_blank">
-                  <v-icon medium color='red'>mdi-email</v-icon>
+                <v-btn text icon medium color='#FF3031' :href="`mailto:${member.member.user.email}`" target="_blank">
+                  <v-icon medium color='#FF3031'>mdi-email</v-icon>
                 </v-btn>
                 <v-btn text icon medium color='black' :href="member.member.github" target="_blank">
                   <v-icon icon medium color='black'>mdi-github-circle</v-icon>
                 </v-btn>
-                <v-btn text icon medium color='blue' :href="member.member.linkedin" target="_blank">
-                  <v-icon medium color='blue'>mdi-linkedin</v-icon>
+                <v-btn text icon medium color='#0e76a8' :href="member.member.linkedin" target="_blank">
+                  <v-icon medium color='#0e76a8'>mdi-linkedin</v-icon>
                 </v-btn>
               </v-card-actions>
             </mdb-card-body>
