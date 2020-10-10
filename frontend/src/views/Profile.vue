@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-16 ml-6 mb-10 mr-6">
+  <div class="mt-16 ml-6 mb-16 mr-6">
     <v-container class="text-center">
       <h1 class="header my-16">
         PROFILE <v-icon class="mb-1" x-large color='white'>mdi-account-circle</v-icon>
@@ -64,40 +64,6 @@
           </v-card-text>
           </v-card>
         </v-col>
-      </v-row>
-    </v-container>
-    <v-container>
-      <v-row
-        align="center"
-        justify="center"
-      >
-        <v-btn
-          rounded
-          raised
-          dark
-          large
-          color="indigo"
-          class="editButton ma-10"
-        >
-          <v-icon left class="mr-4">
-            mdi-pencil
-          </v-icon>
-          Edit
-        </v-btn>
-        <v-btn
-          rounded
-          raised
-          dark
-          large
-          class="ma-10"
-          color="#3C40C6"
-          to="/logout"
-        >
-          Logout
-          <v-icon right class="ml-4">
-            mdi-logout
-          </v-icon>
-        </v-btn>
       </v-row>
     </v-container>
   </div>
