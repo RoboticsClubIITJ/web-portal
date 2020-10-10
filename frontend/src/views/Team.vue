@@ -25,7 +25,7 @@
               </v-avatar>
               <mdb-card-title><strong>{{member.member.user.first_name}} {{member.member.user.last_name}}</strong></mdb-card-title>
               <h5 style="color:#4A148C"><strong>{{member.position}}</strong></h5>
-              <mdb-card-text style="height:200px">
+              <mdb-card-text style="height:150px">
                 <v-chip-group column>
                   <v-chip small color="#4A148C" fill dark class="techstack" v-for="techstack in member.member.techstack" :key="techstack">{{techstack}}</v-chip>
                 </v-chip-group>
