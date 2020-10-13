@@ -21,7 +21,7 @@ div.wrapper
             div.d-flex.justify-center.mb-1
               div.mx-4(v-for="logo in logos")
                 v-img(:src="logo" width="50px" height="50px")
-            div.pa-3.welcome-quote(style="width:100%;") {{WelcomeQuote}}
+            div.welcome-quote(style="width:100%;" class="text-center pa-3") {{WelcomeQuote}}
 </template>
 <script>
 import HeroImg from '@/assets/bg-2.jpg'
