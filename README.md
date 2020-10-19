@@ -1,4 +1,7 @@
 # Robotics Club Web Portal [![Build Status](https://travis-ci.org/RoboticsClubIITJ/web-portal.svg?branch=master)](https://travis-ci.org/RoboticsClubIITJ/web-portal) ![Python 3.6](https://img.shields.io/badge/Python-3.6-blue.svg) ![Django 2.2.9](https://img.shields.io/badge/Django-2.2.9-green.svg) ![Vue 2.6.11](https://img.shields.io/badge/Vue-2.6.11-green.svg)
+<a href="http://roboticsiitj.in/">
+        <img src="https://img.shields.io/badge/Deployed%20on%20DigitalOcean-blueviolet?style=plastic&logo=DigitalOcean"
+</a>
 
 ## Getting Started
 
