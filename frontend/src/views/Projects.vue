@@ -79,6 +79,14 @@ export default {
   }
 }
 </script>
+
+<style>
+/* global scope for override v-btn styles */
+button.v-btn, button.v-expansion-panel-header {
+  outline: none
+}
+</style>
+
 <style scoped>
 .header {
     color: white;
