@@ -1,8 +1,8 @@
 <template>
   <v-container>
   <h1 class="header mt-16">PROJECTS</h1>
-  <v-row>
-  <div class="mar" v-for="project in projects"
+  <v-layout row wrap>
+  <v-flex xs12 sm6 md4 lg4 v-for="project in projects"
     :key="project.name">
   <v-card
     :elevation="10"
@@ -23,10 +23,10 @@
     <v-card-subtitle v-text="project.status">
     </v-card-subtitle>
     <v-card-actions class="mar2">
-    <v-btn dark color="blue" absolute right small fab>
+    <v-btn dark color="blue" absolute right small fab v-if="project.repository_link!=null">
         <a class="white--text text-decoration-none" :href="project.repository_link"><v-icon>mdi-github-circle</v-icon></a>
     </v-btn>
-    <v-btn dark color="pink" absolute small fab>
+    <v-btn dark color="pink" absolute small fab v-if="project.project_url!=null">
         <a class="white--text text-decoration-none" :href="project.project_url"><v-icon>mdi-web</v-icon></a>
     </v-btn>
     </v-card-actions>
@@ -55,8 +55,8 @@
       </v-expansion-panel>
     </v-expansion-panels>
   </v-card>
-  </div>
-  </v-row>
+  </v-flex>
+  </v-layout>
   </v-container>
 </template>
 <script>
@@ -83,7 +83,7 @@ export default {
 <style>
 /* global scope for override v-btn styles */
 button.v-btn, button.v-expansion-panel-header {
-  outline: none
+  outline: none;
 }
 </style>
 
@@ -104,6 +104,7 @@ button.v-btn, button.v-expansion-panel-header {
 }
 .details{
   font-weight:500;
+  outline: none;
 }
 .mar2{
   margin-bottom: 20px;
