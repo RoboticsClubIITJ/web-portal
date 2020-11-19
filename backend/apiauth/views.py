@@ -149,8 +149,9 @@ class ProfileAPIEdit(APIView):
         profile = UserProfile.objects.get(user=user)
         if profile.roll_number == data['roll_number']:
             _ = data.pop('roll_number')
-        new_id = UserProfile.objects.filter(user=user).update(**data)
-        profile = UserProfile.objects.get(id=new_id)
+        _ = UserProfile.objects.filter(user=user).update(**data)
+        profile = UserProfile.objects.filter(user=user)[0]
+        profile.techstack.clear()
         for stack in stacks.split(','):
             tech_stack, x = TechStack.objects.get_or_create(tech_name=stack)
             profile.techstack.add(tech_stack)
