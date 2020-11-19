@@ -118,6 +118,10 @@ export default {
     this.github = state.userProfile.github
     this.phone = state.userProfile.phone
     this.stack = state.userProfile.techstack
+    instance.get('/auth/csrf-token/').then(response => {
+      const token = response.data.csrftoken
+      document.cookie = `csrftoken = ${token}`
+    })
   },
   methods: {
     validate () {
@@ -137,7 +141,7 @@ export default {
       form.append('linkedin', this.linkedin)
       form.append('github', this.github)
       form.append('stack', this.stack)
-      instance.put('/auth/profile/', form)
+      instance.post('/auth/profile-edit/', form)
         .then(res => {
           this.$store.state.userProfile = res.data
           window.location = '/studentzone'
