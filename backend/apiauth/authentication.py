@@ -13,3 +13,11 @@ class SessionAuthentication(authentication.SessionAuthentication):
 
     def authenticate_header(self, request):
         return 'Session'
+
+
+class UnsafeSessionAuthentication(authentication.SessionAuthentication):
+    def enforce_csrf(self, *args, **kwargs):
+        '''
+        Bypass the CSRF checks altogether
+        '''
+        pass
