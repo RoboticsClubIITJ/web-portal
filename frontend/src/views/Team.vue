@@ -53,6 +53,15 @@
 <script>
 import { instance } from '../api/axios'
 import { mdbCard, mdbCardTitle, mdbCardText, mdbCardFooter, mdbCardBody } from 'mdbvue'
+function formatData (member) {
+  member.member.avatar = new URL(member.member.avatar)
+  try {
+    member.member.github = new URL(member.member.github)
+  } catch (e) {}
+  try {
+    member.member.linkedin = new URL(member.member.linkedin)
+  } catch (e) {}
+}
 export default {
   name: 'Team',
   components: {
@@ -71,11 +80,7 @@ export default {
     try {
       const res = await instance.get('/team')
       this.members = res.data
-      this.members.forEach(member => {
-        member.member.avatar = new URL(member.member.avatar)
-        member.member.github = new URL(member.member.github)
-        member.member.linkedin = new URL(member.member.linkedin)
-      })
+      this.members.forEach(member => formatData(member))
     } catch (e) {
       console.log(e)
     }
@@ -85,11 +90,7 @@ export default {
       try {
         const res = await instance.get(`/team?search=${searchData}`)
         this.members = res.data
-        this.members.forEach(member => {
-          member.member.avatar = new URL(member.member.avatar)
-          member.member.github = new URL(member.member.github)
-          member.member.linkedin = new URL(member.member.linkedin)
-        })
+        this.members.forEach(member => formatData(member))
       } catch (e) {
         console.log(e)
       }

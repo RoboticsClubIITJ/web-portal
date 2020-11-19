@@ -4,10 +4,12 @@ import Home from '../views/Home.vue'
 import Comingsoon from '../views/Comingsoon.vue'
 import PageNotFound from '../views/PageNotFound.vue'
 import CreateProfile from '../views/CreateProfile.vue'
+import UpdateProfile from '../components/UpdateProfile.vue'
 import About from '../components/home/Banner3.vue'
 import Team from '../views/Team.vue'
 import Projects from '../views/Projects.vue'
-import Profile from '../views/Profile.vue'
+import StudentZone from '../views/StudentZone.vue'
+import Profile from '../components/Profile.vue'
 
 import store from '@/store'
 Vue.use(VueRouter)
@@ -77,14 +79,26 @@ const routes = [
     path: '/studentzone',
     name: 'StudentZone',
     meta: { Footer: true, AppBar: true, Background: true },
-    component: Profile,
+    component: StudentZone,
     beforeEnter (to, from, next) {
       if (store.state.isAuthenticated && store.state.userProfile != null) {
         next()
       } else {
         store.dispatch('CheckAuthentication', next)
       }
-    }
+    },
+    children: [
+      {
+        path: '/',
+        component: Profile,
+        meta: { Footer: true, AppBar: true, Background: true }
+      },
+      {
+        path: 'editprofile',
+        component: UpdateProfile,
+        meta: { Footer: true, AppBar: true, Background: true }
+      }
+    ]
   },
   {
     path: '/inventory',
@@ -111,6 +125,19 @@ const routes = [
       }
     }
   }
+  /* {
+    path: '/update-profile',
+    name: 'UpdateProfile',
+    component: UpdateProfile,
+    meta: { Footer: true, AppBar: true, Background: true },
+    beforeEnter (to, from, next) {
+      if (!store.state.isAuthenticated) {
+        next()
+      } else {
+        next({ name: 'StudentZone' })
+      }
+    }
+  } */
 ]
 
 const router = new VueRouter({
