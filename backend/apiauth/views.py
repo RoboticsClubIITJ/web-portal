@@ -4,6 +4,7 @@ from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -12,6 +13,7 @@ from rest_framework import status
 
 import requests
 
+from apiauth.authentication import UnsafeSessionAuthentication
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_KEY as CLIENT_ID
 from config.settings import SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET as CLIENT_SECRET
 from config.settings import LOGIN_URL as REDIRECT_URI
@@ -129,9 +131,9 @@ class ProfileAPIView(APIView):
 
 class ProfileAPIEdit(APIView):
     permission_classes = (IsAuthenticated,)
+    authentication_classes = (UnsafeSessionAuthentication,)
 
     @method_decorator(never_cache)
-    @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
