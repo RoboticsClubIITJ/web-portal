@@ -126,7 +126,16 @@ class ProfileAPIView(APIView):
         send_welcome_email.delay(user.first_name, user.email)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
 
-    def put(self, request, *args, **kwargs):
+
+class ProfileAPIEdit(APIView):
+    permission_classes = (IsAuthenticated,)
+
+    @method_decorator(never_cache)
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
         data = {}
         for key in request.data.keys():
             data[key] = request.data.get(key)
