@@ -11,7 +11,8 @@
         v-card-title.headline.justify-center
           v-icon(left large color="white") mdi-newspaper-plus
           h3(style="color: white") Activities and News
-        v-tabs(fixed-tabs background-color='primary lighten-1' dark v-model="tab")
+        v-tabs(fixed-tabs background-color='rgb(57,73,171)' dark v-model="tab")
+          <v-tabs-slider color="rgb(57,73,171)"></v-tabs-slider>
           v-tab
             v-icon(left) mdi-lightbulb-outline
             | Upcoming Events
