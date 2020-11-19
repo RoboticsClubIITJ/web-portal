@@ -77,9 +77,9 @@ export default {
       profile: []
     }
   },
-  async created () {
+  created () {
     try {
-      const userProfile = await this.$store.state.userProfile
+      const userProfile = this.$store.state.userProfile
       this.profile = userProfile
     } catch (e) {
       console.log(e)

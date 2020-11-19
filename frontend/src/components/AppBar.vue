@@ -28,7 +28,7 @@
             center
               v-avatar(size = "70").pt-1
                 v-img(:src="userprofile.avatar")
-            divider.p-3
+            v-divider
             v-list-item(v-for="item in login_items" :key="item.text" @click="" :to="item.router" exact)
               v-list-item-action.mr-3
                 v-icon.white--text {{item.icon}}
@@ -77,7 +77,7 @@ export default {
     ],
     login_items: [
       { text: 'My Profile', icon: 'mdi-account', router: '/studentzone' },
-      { text: 'Edit Profile', icon: 'mdi-pencil', router: '/editprofile' },
+      { text: 'Edit Profile', icon: 'mdi-pencil', router: '/studentzone/editprofile' },
       { text: 'Inventory', icon: 'mdi-shopping', router: '/inventory' },
       { text: 'Logout', icon: 'mdi-logout', router: '/logout' }
     ]
