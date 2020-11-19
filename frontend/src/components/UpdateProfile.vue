@@ -118,10 +118,6 @@ export default {
     this.github = state.userProfile.github
     this.phone = state.userProfile.phone
     this.stack = state.userProfile.techstack
-    instance.get('/auth/csrf-token/').then(response => {
-      const token = response.data.csrftoken
-      document.cookie = `csrftoken = ${token}`
-    })
   },
   methods: {
     validate () {
