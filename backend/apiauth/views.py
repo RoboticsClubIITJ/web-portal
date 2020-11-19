@@ -3,7 +3,8 @@ from django.contrib.auth import login, logout
 from django.utils.decorators import method_decorator
 from django.shortcuts import redirect
 from django.views.decorators.cache import never_cache
-from django.views.decorators.csrf import csrf_protect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
 from django.contrib.auth.models import User
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -131,7 +132,7 @@ class ProfileAPIEdit(APIView):
     permission_classes = (IsAuthenticated,)
 
     @method_decorator(never_cache)
-    @method_decorator(csrf_protect)
+    @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
