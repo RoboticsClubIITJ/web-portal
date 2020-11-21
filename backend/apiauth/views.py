@@ -105,9 +105,9 @@ class CsrfTokenAPIView(APIView):
 
 class ProfileAPIView(APIView):
     permission_classes = (IsAuthenticated,)
+    authentication_classes = (UnsafeSessionAuthentication,)
 
     @method_decorator(never_cache)
-    @method_decorator(csrf_protect)
     def dispatch(self, request, *args, **kwargs):
         return super().dispatch(request, *args, **kwargs)
 
