@@ -78,6 +78,7 @@ export default {
     login_items: [
       { text: 'My Profile', icon: 'mdi-account', router: '/studentzone' },
       { text: 'Edit Profile', icon: 'mdi-pencil', router: '/studentzone/editprofile' },
+      { text: 'Leveling', icon: 'mdi-school', router: '/studentzone/leveling' },
       { text: 'Inventory', icon: 'mdi-shopping', router: '/inventory' },
       { text: 'Logout', icon: 'mdi-logout', router: '/logout' }
     ]

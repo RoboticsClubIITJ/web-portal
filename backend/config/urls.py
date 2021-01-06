@@ -22,6 +22,7 @@ urlpatterns = [
     path('api/auth/', include("apiauth.urls")),
     path('api/projects/', include("projects.urls")),
     path('api/general_assets/', include("general_assets.urls")),
+    path('api/leveling/', include("leveling.urls")),
 ]
 
 if settings.DEBUG:
