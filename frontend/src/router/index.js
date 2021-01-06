@@ -10,6 +10,7 @@ import Team from '../views/Team.vue'
 import Projects from '../views/Projects.vue'
 import StudentZone from '../views/StudentZone.vue'
 import Profile from '../components/Profile.vue'
+import Leveling from '../components/Leveling.vue'
 
 import store from '@/store'
 Vue.use(VueRouter)
@@ -96,6 +97,11 @@ const routes = [
       {
         path: 'editprofile',
         component: UpdateProfile,
+        meta: { Footer: true, AppBar: true, Background: true }
+      },
+      {
+        path: 'leveling',
+        component: Leveling,
         meta: { Footer: true, AppBar: true, Background: true }
       }
     ]
