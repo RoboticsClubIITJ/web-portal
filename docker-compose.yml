@@ -90,6 +90,21 @@ services:
       - django
     networks:
       - app-network
+  celery-beat:
+    image: 'robotics-web-backend:latest'
+    container_name: celery-beat
+    ports: []
+    environment:
+      - DB_HOST=postgresql
+      - MODE=Development-docker
+      - REDIS_HOST=redis
+    command: celery -A config beat -l INFO
+    volumes:
+      - ./backend:/app
+    depends_on:
+      - django
+    networks:
+      - app-network
 
 networks:
   app-network:
