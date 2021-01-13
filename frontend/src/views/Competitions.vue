@@ -45,7 +45,7 @@
     </v-chip>
     <div class="ma-4">
         <div v-for="a in project.announcement" :key="a">
-            {{ a }}
+            {{ a.text }}
         </div>
     </div>
     </div>

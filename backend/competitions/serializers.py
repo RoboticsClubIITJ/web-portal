@@ -8,7 +8,7 @@ class CompetitionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Competition
         fields = '__all__'
-        depth = 1
+        depth = 2
 
 
 class TeamSerializer(serializers.ModelSerializer):
@@ -17,4 +17,4 @@ class TeamSerializer(serializers.ModelSerializer):
     class Meta:
         model = Team
         fields = '__all__'
-        depth = 1
+        depth = 2
