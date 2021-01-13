@@ -9,8 +9,10 @@ import About from '../components/home/Banner3.vue'
 import Team from '../views/Team.vue'
 import Projects from '../views/Projects.vue'
 import StudentZone from '../views/StudentZone.vue'
+import Competitions from '../views/Competitions.vue'
 import Profile from '../components/Profile.vue'
 import Leveling from '../components/Leveling.vue'
+import CompCard from '../components/CompCard.vue'
 
 import store from '@/store'
 Vue.use(VueRouter)
@@ -50,7 +52,7 @@ const routes = [
     path: '/competitions',
     name: 'Competitions',
     meta: { Footer: true, AppBar: true, Background: true },
-    component: Comingsoon
+    component: Competitions
   },
   {
     path: '/resources',
@@ -102,6 +104,11 @@ const routes = [
       {
         path: 'leveling',
         component: Leveling,
+        meta: { Footer: true, AppBar: true, Background: true }
+      },
+      {
+        path: 'competitions/:id',
+        component: CompCard,
         meta: { Footer: true, AppBar: true, Background: true }
       }
     ]

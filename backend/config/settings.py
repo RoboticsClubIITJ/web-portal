@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'apiauth.apps.ApiauthConfig',
     'general_assets.apps.GeneralAssetsConfig',
     'leveling.apps.LevelingConfig',
+    'competitions.apps.CompetitionsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
