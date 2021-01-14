@@ -23,6 +23,7 @@ urlpatterns = [
     path('api/projects/', include("projects.urls")),
     path('api/general_assets/', include("general_assets.urls")),
     path('api/leveling/', include("leveling.urls")),
+    path('api/competitions/', include("competitions.urls")),
 ]
 
 if settings.DEBUG:
