@@ -11,7 +11,7 @@
     class="mx-auto cardstyle"
   >
     <v-img
-      :src="project.img_tile"
+      :src="project.img_tile.pathname"
       height="200px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       style="margin-bottom:10px;"
@@ -81,6 +81,11 @@ export default {
     try {
       const res = await instance.get('competitions/get')
       this.projects = res.data
+      this.projects.forEach(element => {
+        element.img_tile = new URL(element.img_tile)
+        const dt = new Date(element.start)
+        element.start = dt.toDateString()
+      })
     } catch (e) {
       console.log(e)
     }
