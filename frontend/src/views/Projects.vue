@@ -11,7 +11,7 @@
     class="mx-auto cardstyle"
   >
     <v-img
-      :src="project.img_tile"
+      :src="project.img_tile.pathname"
       height="200px"
       gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
       style="margin-bottom:10px;"
