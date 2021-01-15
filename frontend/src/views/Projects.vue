@@ -73,6 +73,11 @@ export default {
     try {
       const res = await instance.get('projects/project-list')
       this.projects = res.data
+      this.projects.forEach(element => {
+        element.img_tile = new URL(element.img_tile)
+        const dt = new Date(element.start)
+        element.start = dt.toDateString()
+      })
     } catch (e) {
       console.log(e)
     }
