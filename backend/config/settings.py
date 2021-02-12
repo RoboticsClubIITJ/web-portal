@@ -168,7 +168,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', ca
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
-FRONTEND_URL = 'http://'+config('HOST', default='localhost:8080')
+FRONTEND_URL = 'https://'+config('HOST', default='localhost:8080')
 
 LOGIN_URL = FRONTEND_URL + '/api/auth/login'
 
