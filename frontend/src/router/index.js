@@ -10,6 +10,7 @@ import Team from '../views/Team.vue'
 import Projects from '../views/Projects.vue'
 import StudentZone from '../views/StudentZone.vue'
 import Competitions from '../views/Competitions.vue'
+import Thinkathon from '../views/Thinkathon.vue'
 import Profile from '../components/Profile.vue'
 import Leveling from '../components/Leveling.vue'
 import CompCard from '../components/CompCard.vue'
@@ -77,6 +78,11 @@ const routes = [
     beforeEnter (to, from, next) {
       store.dispatch('logout')
     }
+  },
+  {
+    path: '/thinkathon',
+    component: Thinkathon,
+    meta: { Footer: false, AppBar: false, Background: true }
   },
   {
     path: '/studentzone',
