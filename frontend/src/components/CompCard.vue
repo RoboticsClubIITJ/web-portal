@@ -102,6 +102,7 @@
           >
           <v-card-title class="headline justify-center">
             Members
+          <v-btn color="red" style="margin-left: 50px" @click=leave> Leave</v-btn>
           </v-card-title>
           <v-divider class="mx-3 my-0"/>
           <v-card-text>
@@ -163,6 +164,11 @@ export default {
       } else {
         this.err_m1 = res.data.data
       }
+    },
+    async leave () {
+      const res = await instance.post('competitions/exit/', { code: this.team.code })
+      console.log(res.data)
+      this.$router.go()
     },
     async create () {
       this.loader = true

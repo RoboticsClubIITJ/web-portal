@@ -6,6 +6,8 @@ from apiauth.authentication import UnsafeSessionAuthentication
 from rest_framework.response import Response
 from rest_framework import status, generics
 
+from apiauth.tasks import send_thinkathon_email
+
 import random
 
 
@@ -46,6 +48,7 @@ class RegisterAPIView(APIView):
             team.members.add(request.user)
             team_data = TeamSerializer(team)
             serializer = CompetitionSerializer(comp)
+            send_thinkathon_email.delay(request.user.first_name, team.code, request.user.email)
             return Response({"comp": serializer.data, "registered": True, "team": team_data.data},
                             status=status.HTTP_200_OK)
 
@@ -55,8 +58,25 @@ class RegisterAPIView(APIView):
             return Response({"comp": serializer.data, "registered": False}, status=status.HTTP_200_OK)
         team_data = TeamSerializer(team[0])
         serializer = CompetitionSerializer(comp)
+        send_thinkathon_email.delay(request.user.first_name, team[0].code, request.user.email)
         return Response({"comp": serializer.data, "registered": True, "team": team_data.data},
                         status=status.HTTP_200_OK)
+
+
+class RemoveAPIView(APIView):
+    permission_classes = (IsAuthenticated,)
+    authentication_classes = (UnsafeSessionAuthentication,)
+
+    def post(self, request, *args, **kwargs):
+        code = request.data.get('code')
+        team = Team.objects.filter(code=code, members=request.user)
+        if not team.exists():
+            return Response({"data": "No such team found"}, status=status.HTTP_400_BAD_REQUEST)
+        team = team[0]
+        team.members.remove(request.user)
+        if team.members.count() == 0:
+            team.delete()
+        return Response(status=status.HTTP_200_OK)
 
 
 class CompetitionsAPIView(generics.ListAPIView):
