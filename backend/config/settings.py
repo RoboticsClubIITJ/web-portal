@@ -162,13 +162,13 @@ if not DEBUG:
         'rest_framework.renderers.JSONRenderer',
     )
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY', default='', cast=str)
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('GOOGLE_OAUTH2_KEY', default='274739479939-peg39t8dp8gch9io5s3eutue82h7atcu.apps.googleusercontent.com', cast=str)
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='', cast=str)
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('GOOGLE_OAUTH2_SECRET', default='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', cast=str)
 
 SOCIAL_AUTH_ADMIN_USER_SEARCH_FIELDS = ['username', 'first_name', 'last_name', 'email']
 
-FRONTEND_URL = 'https://'+config('HOST', default='localhost:8080')
+FRONTEND_URL = 'http://'+config('HOST', default='localhost:8080')
 
 LOGIN_URL = FRONTEND_URL + '/api/auth/login'
 

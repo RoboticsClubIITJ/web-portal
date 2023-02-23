@@ -104,6 +104,7 @@ class CsrfTokenAPIView(APIView):
 
 
 class ProfileAPIView(APIView):
+    print("......................................")
     permission_classes = (IsAuthenticated,)
     authentication_classes = (UnsafeSessionAuthentication,)
 
@@ -126,6 +127,7 @@ class ProfileAPIView(APIView):
             profile.techstack.add(tech_stack)
         profile.save()
         send_welcome_email.delay(user.first_name, user.email)
+        print(user.email)
         return Response(ProfileSerializer(profile).data, status=status.HTTP_200_OK)
 
 

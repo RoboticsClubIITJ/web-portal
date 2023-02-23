@@ -63,7 +63,7 @@
                     | No results matching "{{ stacksearch }}". Press enter to create a new one
             </template>
         v-row.justify-center
-          v-btn.mr-5(:disabled ="!valid" color="sucess" @click="validate") Submit
+          v-btn.mr-5(:disabled ="!valid" color="success" @click="validate") Submit
           v-btn(color="error" @click="reset") Reset
 </template>
 <script>
