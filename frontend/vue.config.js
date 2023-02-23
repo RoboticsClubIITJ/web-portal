@@ -2,15 +2,15 @@ module.exports = {
   devServer: {
     proxy: {
       '/api/*': {
-        target: `https://${process.env.BACKEND_HOST ? process.env.BACKEND_HOST : '63f7b30c2db7870008628742--helpful-figolla-146d54.netlify.app/'}`,
+        target: `http://${process.env.BACKEND_HOST ? process.env.BACKEND_HOST : '127.0.0.1'}:8000`,
         secure: false
       },
       '/django_media/*': {
-        target: `https://${process.env.BACKEND_HOST ? process.env.BACKEND_HOST : '63f7b30c2db7870008628742--helpful-figolla-146d54.netlify.app/'}`,
+        target: `http://${process.env.BACKEND_HOST ? process.env.BACKEND_HOST : '127.0.0.1'}:8000`,
         secure: false
       },
       '/django_static/*': {
-        target: `https://${process.env.BACKEND_HOST ? process.env.BACKEND_HOST : '63f7b30c2db7870008628742--helpful-figolla-146d54.netlify.app/'}`,
+        target: `http://${process.env.BACKEND_HOST ? process.env.BACKEND_HOST : '127.0.0.1'}:8000`,
         secure: false
       }
     }
