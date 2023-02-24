@@ -5,7 +5,7 @@ services:
       context: ../backend
       dockerfile: Dockerfile.prod
     image: 'robotics-web-backend-1:latest'
-    container_name: django
+    container_name: robotics_portal_django
     restart: unless-stopped
     env_file: .env
     environment:
@@ -31,7 +31,7 @@ services:
       context: ../frontend
       dockerfile: Dockerfile.prod
     image: 'robotics-web-frontend-1:latest'
-    container_name: vue
+    container_name: robotics_portal_vue
     restart: unless-stopped
     env_file: .env
     environment:
@@ -48,7 +48,7 @@ services:
   
   postgresql:
     image: 'bitnami/postgresql:latest'
-    container_name: postgresql
+    container_name: robotics_portal_postgresql
     restart: unless-stopped
     env_file: .env
     environment:
@@ -67,14 +67,14 @@ services:
   
   redis:
     image: redis:alpine
-    container_name: redis01
+    container_name: robotics_portal_redis01
     restart: unless-stopped
     networks:
       - app-network
   
   celery:
     image: 'robotics-web-backend-1:latest'
-    container_name: celery
+    container_name: robotics_portal_celery
     ports: []
     restart: unless-stopped
     env_file: .env
